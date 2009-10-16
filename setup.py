@@ -25,6 +25,10 @@ setup(name='collective.vdexvocabulary',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'imvdex',
+          'imsvdex',
+          'zope.interface',
+          'zope.component',
+          'zope.schema',
+          'zope.i18nmessageid',
       ],
       )
