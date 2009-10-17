@@ -14,7 +14,10 @@ class VdexTerm(object):
         self.value = value
         if token is None:
             token = value
-        self.token = str(token)
+        try:
+            self.token = str(token)
+        except:
+            self.token = str(token.encode('utf-8'))
         self.title = title
         if title is not None:
             directlyProvides(self, ITitledTokenizedTerm)
