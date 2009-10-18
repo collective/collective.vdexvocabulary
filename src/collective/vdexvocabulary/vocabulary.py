@@ -11,8 +11,13 @@ class VdexVocabulary(object):
         if not os.path.isabs(vdex_filename):
             raise Exception, 'please set absolute path for filename'
         f = open(vdex_filename)
-        self.vdex = imsvdex.vdex.VDEXManager(file=f, lang=default_lang, fallback=fallback_to_default_language)
-        f.close()
+        try:
+            try:
+                self.vdex = imsvdex.vdex.VDEXManager(file=f, lang=default_lang, fallback=fallback_to_default_language)
+            except imsvdex.vdex.VDEXError, e:
+                raise imsvdex.vdex.VDEXError, vdex_filename+': '+str(e)
+        finally:
+            f.close()
     
     def getTerms(self, lang):
         xpath = self.vdex.vdexTag('term')

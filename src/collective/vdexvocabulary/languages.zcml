@@ -1,0 +1,8 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:vdex="http://namespaces.zope.org/vdex"
+    i18n_domain="campagnamica.types">
+
+  <vdex:vocabulary file="vdex/languages.vdex" />
+
+</configure>

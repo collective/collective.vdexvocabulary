@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0" 
+      orderSignificant="false" language="en">
+    <vocabIdentifier>collective.vdexvocabulary.languages</vocabIdentifier>
+    <term>
+        <termIdentifier>italian</termIdentifier>
+        <caption>
+            <langstring language="en">Italian</langstring>
+            <langstring language="it">Italiano</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>english</termIdentifier>
+        <caption>
+            <langstring language="en">English</langstring>
+            <langstring language="it">Inglese</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>french</termIdentifier>
+        <caption>
+            <langstring language="en">French</langstring>
+            <langstring language="it">Francese</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>german</termIdentifier>
+        <caption>
+            <langstring language="en">German</langstring>
+            <langstring language="it">Tedesco</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>spanish</termIdentifier>
+        <caption>
+            <langstring language="en">Spanish</langstring>
+            <langstring language="it">Spagnolo</langstring>
+        </caption>
+    </term>
+</vdex>
