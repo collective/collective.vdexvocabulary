@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0" 
+      orderSignificant="false" language="en">
+    <vocabIdentifier>collective.vdexvocabulary.months</vocabIdentifier>
+    <term>
+        <termIdentifier>january</termIdentifier>
+        <caption>
+            <langstring language="en">January</langstring>
+            <langstring language="it">Gennaio</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>february</termIdentifier>
+        <caption>
+            <langstring language="en">February</langstring>
+            <langstring language="it">Febbraio</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>march</termIdentifier>
+        <caption>
+            <langstring language="en">March></langstring>
+            <langstring language="it">Marzo</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>april</termIdentifier>
+        <caption>
+            <langstring language="en">April</langstring>
+            <langstring language="it">Aprile</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>may</termIdentifier>
+        <caption>
+            <langstring language="en">May</langstring>
+            <langstring language="it">Maggio</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>june</termIdentifier>
+        <caption>
+            <langstring language="en">June</langstring>
+            <langstring language="it">Giugno</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>july</termIdentifier>
+        <caption>
+            <langstring language="en">July</langstring>
+            <langstring language="it">Luglio</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>august</termIdentifier>
+        <caption>
+            <langstring language="en">August</langstring>
+            <langstring language="it">Agosto</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>september</termIdentifier>
+        <caption>
+            <langstring language="en">September</langstring>
+            <langstring language="it">settembre</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>october</termIdentifier>
+        <caption>
+            <langstring language="en">October</langstring>
+            <langstring language="it">Ottobre</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>november</termIdentifier>
+        <caption>
+            <langstring language="en">November</langstring>
+            <langstring language="it">Novembre</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>december</termIdentifier>
+        <caption>
+            <langstring language="en">December</langstring>
+            <langstring language="it">Dicembre</langstring>
+        </caption>
+    </term>
+</vdex>
