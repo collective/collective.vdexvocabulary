@@ -12,7 +12,7 @@ class VdexTerm(object):
     implements(ITokenizedTerm)
 
 
-    def __init__(self, value, token=None, title=None, description=None, relationships=[]):
+    def __init__(self, value, token=None, title=None, description=None, related=[]):
         self.value = value
         if token is None:
             token = value
@@ -24,12 +24,5 @@ class VdexTerm(object):
         if title is not None:
             directlyProvides(self, ITitledTokenizedTerm)
         self.description = description
-                
-        self.related = {}
-        
-        for r in relationships:
-            if not self.related.has_key(r['vocab']):
-                self.related[r['vocab']] = []
-            self.related[r['vocab']].append(r['target'])
-            
+        self.related = related
         

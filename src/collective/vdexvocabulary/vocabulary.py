@@ -49,40 +49,46 @@ class VdexVocabulary(object):
                 elems = dict((el.tag.split('}')[1],el) for el in rel.getchildren())
 
                 sourceTerm = elems['sourceTerm'].text
-                if sourceTerm not in items:
-                    raise Exception, 'sourceTerm ('+sourceTerm+') not listed in vocabulary.'
+                sourceTermVocabName = elems['sourceTerm'].attrib.get('vocabIdentifier', None)
+                if sourceTermVocabName is None:
+                   if sourceTerm not in items:
+                        raise Exception, 'sourceTerm ('+sourceTerm+') not listed in vocabulary ('+self.vdex.getVocabIdentifier()+').'
+                else:
+                    try:
+                        sourceTermVocab = registry.get(context, sourceTermVocabName)
+                        if sourceTermVocab.getTermByToken(sourceTerm) is None:
+                            raise Exception, 'sourceTerm ('+sourceTerm+') not listed in vocabulary ('+sourceTermVocab.vdex.getVocabIdentifier()+').'
+                    except:
+                        pass
 
                 targetTerm = elems['targetTerm'].text
                 targetTermVocabName = elems['targetTerm'].attrib.get('vocabIdentifier', None)
-                if targetVocab is None:
-                    if targetTerm not in items:
-                        raise Exception, 'targetTerm ('+targetTerm+') not found.'
+                if targetTermVocabName is None:
+                   if targetTerm not in items:
+                        raise Exception, 'targetTerm ('+targetTerm+') not listed in vocabulary ('+self.vdex.getVocabIdentifier()+').'
                 else:
-                    targetTermVocab = registry.get(target)
-                    if targetTermVocab is None:
-                        raise Exception, 'targetTerm vocabulary ('+targetTermVocabName+') for term ('+targetTerm+') does not exists.'
-                    if targetTermVocab.getTermByToken(targetTerm) is None:
-                        raise Exception, 'targetTerm ('+targetTerm+') not found in ('+targetTermVocabName+') vocabulary.'
-                        
+                    try:
+                        targetTermVocab = registry.get(context, targetTermVocabName)
+                        if targetTermVocab.getTermByToken(targetTerm) is None:
+                            raise Exception, 'targetTerm ('+targetTerm+') not listed in vocabulary ('+targetTermVocab.vdex.getVocabIdentifier()+').'
+                    except:
+                        pass
+
                 relationshipType = elems['relationshipType'].text
-                relationshipSource = elems['relationshipType'].attrib.get('source', None)
-                relationshipSourceVocab = registry.get(context, relationshipSource, None)
-                if relationshipSourceVocab is None:
-                    raise Exception, 'Relationship source ('+relationshipSource+') does not exists'
-                if relationshipSourceVocab.getTermByToken(relationshipType) is None:
-                    raise Exception, 'Relationship type ('+relationshipSource+') does not contain ' + \
+                relationshipVocabName = elems['relationshipType'].attrib.get('source', None)
+                relationshipVocab = registry.get(context, relationshipVocabName)
+                if relationshipVocab is None:
+                    raise Exception, 'Relationship source ('+relationshipVocabName+') does not exists'
+                if relationshipVocab.getTermByToken(relationshipType) is None:
+                    raise Exception, 'Relationship type ('+relationshipVocabName+') does not contain ' + \
                                      'relationship type ('+relationshipType+')'
                 
-                
                 if sourceTerm not in out.keys():
-                    out[sourceTerm] = []
-                if relationshipType not in out[sourceTerm].keys():
+                    out[sourceTerm] = {}
+                if relationshipType not in [i for i in out[sourceTerm]]:
                     out[sourceTerm][relationshipType] = []
                 
-                out[sourceTerm][relationshipType].append({
-                    'target'        : targetTerm,
-                    'target_vocab'  : targetTermVocabName,
-                })
+                out[sourceTerm][relationshipType].append(targetTerm)
 
         return out
 

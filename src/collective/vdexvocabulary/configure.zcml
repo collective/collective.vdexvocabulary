@@ -1,6 +1,6 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:vdex="http://namespaces.zope.org/vdex"
     i18n_domain="collective.vdexvocabulary">
 
   <vdex:vocabulary file="vdex/iso2788_relations.vdex" />
