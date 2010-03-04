@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by Adam Richard Cooper (FD Learning Ltd) -->
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd" orderSignificant="false" profileType="flatTokenTerms" language="en">
+	<vocabName>
+		<langstring>ISO 2788 Term Relationships for Monolingual Thesauri as Used by the IMS Vocabulary Definition Exchange Specification</langstring>
+	</vocabName>
+	<vocabIdentifier>http://www.imsglobal.org/vocabularies/iso2788_relations.xml</vocabIdentifier>
+	<term>
+		<termIdentifier>USE</termIdentifier>
+		<caption>
+			<langstring>use</langstring>
+		</caption>
+		<description>
+			<langstring>Preferred term when a choice between synonyms or quasi-synonyms exists. </langstring>
+		</description>
+	</term>
+	<term>
+		<termIdentifier>UF</termIdentifier>
+		<caption>
+			<langstring>use for</langstring>
+		</caption>
+		<description>
+			<langstring>Non-preferred synonym or quasi-synonym for the term being described. </langstring>
+		</description>
+	</term>
+	<term>
+		<termIdentifier>TT</termIdentifier>
+		<caption>
+			<langstring>top term</langstring>
+		</caption>
+		<description>
+			<langstring>Broadest class to which the specific term belongs. </langstring>
+		</description>
+	</term>
+	<term>
+		<termIdentifier>BT</termIdentifier>
+		<caption>
+			<langstring>broader term</langstring>
+		</caption>
+		<description>
+			<langstring>Term that has a broader meaning than the term being described. </langstring>
+		</description>
+	</term>
+	<term>
+		<termIdentifier>NT</termIdentifier>
+		<caption>
+			<langstring>narrower term</langstring>
+		</caption>
+		<description>
+			<langstring>Term that has a narrower meaning than the term being described. </langstring>
+		</description>
+	</term>
+	<term>
+		<termIdentifier>RT</termIdentifier>
+		<caption>
+			<langstring>related term</langstring>
+		</caption>
+		<description>
+			<langstring>Term related to the one being described. </langstring>
+		</description>
+	</term>
+	<metadata>
+		<lom xmlns="http://www.imsglobal.org/xsd/imsmd_rootv1p2p1">
+			<relation>
+				<kind>
+					<source>
+						<langstring>LOMv1.0</langstring>
+					</source>
+					<value>
+						<langstring>IsBasedOn</langstring>
+					</value>
+				</kind>
+				<resource>
+					<description>
+						<langstring>ISO 2788:1986 - Guidelines for the establishment and development of monolingual thesauri</langstring>
+					</description>
+				</resource>
+			</relation>
+		</lom>
+	</metadata>
+</vdex>

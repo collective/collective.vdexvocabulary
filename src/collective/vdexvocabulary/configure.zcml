@@ -3,6 +3,7 @@
     xmlns:five="http://namespaces.zope.org/five"
     i18n_domain="collective.vdexvocabulary">
 
-  <five:registerPackage package="." initialize=".initialize" />
+  <vdex:vocabulary file="vdex/iso2788_relations.vdex" />
+  <vdex:vocabulary file="vdex/iso5964_equivalences.vdex" />
 
 </configure>

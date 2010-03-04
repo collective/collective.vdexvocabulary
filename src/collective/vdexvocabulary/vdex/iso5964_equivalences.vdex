@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by Adam Richard Cooper (FD Learning Ltd) -->
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd" orderSignificant="true" profileType="flatTokenTerms" language="en">
+	<vocabName>
+		<langstring>ISO 5964 Degrees of Equivalance for Multilingual Thesauri as Used by the IMS Vocabulary Definition Exchange Specification</langstring>
+	</vocabName>
+	<vocabIdentifier>http://www.imsglobal.org/vocabularies/iso5964_equivalences.xml</vocabIdentifier>
+	<term>
+		<termIdentifier>exact</termIdentifier>
+		<caption>
+			<langstring>exact equivalence</langstring>
+		</caption>
+		<description>
+			<langstring>The target language contains a term that is a) identical in meaning and scope to the term in the source language; b) capable of functioning as a preferred term in the target language.</langstring>
+		</description>
+	</term>
+	<term>
+		<termIdentifier>inexact</termIdentifier>
+		<caption>
+			<langstring>inexact equivalence</langstring>
+		</caption>
+		<description>
+			<langstring>A term in the target language expresses the same general concept as the source language term, although the meanings of the terms are not precisely identical.</langstring>
+		</description>
+	</term>
+	<term>
+		<termIdentifier>partial</termIdentifier>
+		<caption>
+			<langstring>partial equivalence</langstring>
+		</caption>
+		<description>
+			<langstring>The term in the source language cannot be matched by an exactly equivalent term in the target language, but a near translation can be achieved by selecting a term with a slightly broader or narrower meaning.</langstring>
+		</description>
+	</term>
+	<term>
+		<termIdentifier>singleToMultiple</termIdentifier>
+		<caption>
+			<langstring>single-to-multiple equivalence</langstring>
+		</caption>
+		<description>
+			<langstring>The term in the source language cannot be matched by an exactly equivalent term in the target language, but the concept to which the source language term refers can be expressed by a combination of two or more existing preferred terms in the target language.</langstring>
+		</description>
+	</term>
+	<term>
+		<termIdentifier>nonExact</termIdentifier>
+		<caption>
+			<langstring>non-equivalence</langstring>
+		</caption>
+		<description>
+			<langstring>The target language does not contain a term that corresponds in meaning, either partially or inexactly, to the source language term.</langstring>
+		</description>
+	</term>
+	<metadata>
+		<lom xmlns="http://www.imsglobal.org/xsd/imsmd_rootv1p2p1">
+			<relation>
+				<kind>
+					<source>
+						<langstring>LOMv1.0</langstring>
+					</source>
+					<value>
+						<langstring>IsBasedOn</langstring>
+					</value>
+				</kind>
+				<resource>
+					<description>
+						<langstring>CEN/ISSS WS/LT Learning Technologies Workshop CWA: 
+&quot;Vocabularies repository&quot;.</langstring>
+					</description>
+				</resource>
+			</relation>
+			<relation>
+				<kind>
+					<source>
+						<langstring>LOMv1.0</langstring>
+					</source>
+					<value>
+						<langstring>IsBasedOn</langstring>
+					</value>
+				</kind>
+				<resource>
+					<description>
+						<langstring>ISO 5964:1985 - Guidelines for the establishment and development of multilingual thesauri</langstring>
+					</description>
+				</resource>
+			</relation>
+		</lom>
+	</metadata>
+</vdex>
