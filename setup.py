@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.1'
+version = '0.1a1'
 
 setup(name='collective.vdexvocabulary',
       version=version,
-      description="",
+      description="ims vdex vocabularies as zope vocabulary",
       long_description=open("README.txt").read(),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
@@ -13,10 +13,10 @@ setup(name='collective.vdexvocabulary',
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
-      keywords='plone vdex vocabulary',
+      keywords='plone vdex zope vocabulary',
       author='Rok Garbas',
       author_email='rok@garbas.si',
-      url='http://docs.garbas.si/collective.vdexvocabulary',
+      url='http://github.com/garbas/collective.vdexvocabulary',
       license='GPL',
       packages=find_packages('src', exclude=['ez_setup']),
       package_dir={'':'src'},
