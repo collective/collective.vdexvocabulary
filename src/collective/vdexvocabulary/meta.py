@@ -24,6 +24,7 @@ class IVdexVocabulary(zope.interface.Interface):
         )
 
 def VdexVocabularyDirective(_context, file=None, directory=None):
+    """ZCML directive."""
 
     if file is None and directory is None:
         raise TypeError("Either 'filename' or 'directory' must be given")

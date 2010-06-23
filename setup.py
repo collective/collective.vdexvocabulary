@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.1a1'
+version = '0.1'
 
 setup(name='collective.vdexvocabulary',
       version=version,
@@ -24,11 +24,14 @@ setup(name='collective.vdexvocabulary',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'setuptools',
+          'distribute',
           'imsvdex',
+          'zope.schema',
           'zope.interface',
           'zope.component',
-          'zope.schema',
+          'zope.configuration',
           'zope.i18nmessageid',
       ],
+      test_suite = "tests.test_suite",
+      tests_require = ['manuel'],
       )

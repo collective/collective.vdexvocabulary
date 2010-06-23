@@ -1,13 +1,4 @@
-Introduction
-============
-
-so one of packages that should be released at this point, since it missing
-documentation, tests and some more documentation. But I have it laying around
-for almost half a year now and is been havily used on many projects, so I
-decided to release it as alpha. Maybe if there is someone who will kick my 
-ass to write to documentation or do it by himself.
-
-Source: http://github.com/garbas/collective.vdexvocabulary
+.. contents::
 
 
 What this package do?
@@ -21,18 +12,61 @@ easily use it in systems like Plone / Zope.
 Whats so special about it?
 --------------------------
 
-Imagine you have big vocabularies with a lot of relations. I'm talking 10.000
-and more here. So this would be perfect use case to use collective.vdexvocabulary.
-Also there are other stuff which I didn't found in other vocabulary packages for
-Plone/Zope: 
+Imagine you have big vocabularies with a lot of relations. I'm talking +10.000 
+terms with +30.000 relations. So this would be perfect use case to use
+collective.vdexvocabulary. Also there are other stuff which I didn't found in
+other vocabulary packages for Plone/Zope: 
 
- * i18n support
- * proper order also with unicode charecters
+ * i18n support (as it is defined in IMS VDEX)
+ * proper order also with unicode charecters (if zope.ucol is installed)
  * easy registration using zcml
+ * relations as it specified in IMS VDEX standard
 
 
-Credits
--------
+How do I use it?
+----------------
+
+In your configure.zcml add::
+
+    <configure
+        ...
+        xmlns:vdex="http://namespaces.zope.org/vdex"
+        ...>
+
+      <include package="collective.vdexvocabulary" />
+
+And to register a vdex vocabulary simply add line bellow pointing to file
+containing vdex vocabulary::
+ 
+    <configure
+        ...
+        xmlns:vdex="http://namespaces.zope.org/vdex"
+        ...>
+
+      <vdex:vocabulary file="path-to/very-interesting.xml" />
+
+To make registration of vocabularies even easier you can also register 
+several vocabularies and just point to directory::
+
+    <configure
+        ...
+        xmlns:vdex="http://namespaces.zope.org/vdex"
+        ...>
+
+      <vdex:vocabulary directory="path-to/my-vdex-vocabularies"
+
+
+Where can I complain / help / send rum?
+---------------------------------------
+
+:Source: git://github.com/garbas/collective.vdexvocabulary.git
+:Report Issues: http://github.com/garbas/collective.vdexvocabulary/issues
+:Home page: http://github.com/garbas/collective.vdexvocabulary
+:Send rum: contact rok@garbas.si for more info
+
+
+Credit
+------
 
  * Rok Garbas, http://garbas.si, <rok@garbas.si>, Author
  * Seantis gmbh, http://www.seantis.ch
@@ -42,8 +76,10 @@ Credits
 
 
 TODO
-====
+----
 
  * write test and get decent test coverage
  * write documentation
+ * make ZCML optional
+ * make through the web vdex editor (this would probably need sponsoring)
 
