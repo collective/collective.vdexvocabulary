@@ -78,6 +78,9 @@ Credit
 TODO
 ----
 
+ * fetch vocab(s) via url (new directive)
+ * load vocabs view entry_points
+ * store vocabs (or changed vocabs in zodb), will probably also need diff and merge option
  * write test and get decent test coverage
  * write documentation
  * make ZCML optional
