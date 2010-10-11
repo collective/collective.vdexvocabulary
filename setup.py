@@ -1,12 +1,12 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.1'
+version = '0.1.1'
 
 setup(name='collective.vdexvocabulary',
       version=version,
       description="ims vdex vocabularies as zope vocabulary",
-      long_description=open("README.txt").read(),
+      long_description=open("README.rst").read(),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Framework :: Plone",
