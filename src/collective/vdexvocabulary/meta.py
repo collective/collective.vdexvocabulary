@@ -44,4 +44,4 @@ def VdexVocabularyDirective(_context, file=None, directory=None):
                     provides = zope.schema.interfaces.IVocabularyFactory,
                     name = vocabulary.vdex.getVocabIdentifier(),
                     component = vocabulary)
-            
+

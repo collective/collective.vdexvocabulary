@@ -1,4 +1,5 @@
 *.pyc
+*.swp
 *.egg-info
 bin/
 elementtree-1.2.7_20070827_preview-py2.6.egg/

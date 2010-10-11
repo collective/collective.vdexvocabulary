@@ -11,7 +11,7 @@ logger = logging.getLogger("collective.vdexvocabulary")
 
 class VdexVocabulary(object):
     """Zope Vocabulary implementation for VDEX."""
-    
+
     def __init__(self, vdex_filename, default_lang='en', fallback_to_default_language=True):
         if not os.path.isabs(vdex_filename):
             raise Exception, 'please set absolute path for filename'
@@ -23,19 +23,19 @@ class VdexVocabulary(object):
                 raise imsvdex.vdex.VDEXError, vdex_filename+': '+str(e)
         finally:
             f.close()
-    
+
     def getTerms(self, lang):
         xpath = self.vdex.vdexTag('term')
         terms = self.vdex.tree._root.findall(xpath)
+        out = []
         if len(terms) != 0:
-            out = []
             for term in terms:
                  out.append(dict(
                     key = self.vdex.getTermIdentifier(term),
                     value = self.vdex.getTermCaption(term, lang),
                     description = self.vdex.getTermDescription(term, lang)))
         return out
-        
+
     def getRelations(self, context, lang, items):
         registry = getVocabularyRegistry()
         items = [i['key'] for i in items]
@@ -45,7 +45,7 @@ class VdexVocabulary(object):
         out = {}
         if len(rels) != 0:
             for rel in rels:
-                
+
                 elems = dict((el.tag.split('}')[1],el) for el in rel.getchildren())
 
                 sourceTerm = elems['sourceTerm'].text
@@ -82,12 +82,12 @@ class VdexVocabulary(object):
                 if relationshipVocab.getTermByToken(relationshipType) is None:
                     raise Exception, 'Relationship type ('+relationshipVocabName+') does not contain ' + \
                                      'relationship type ('+relationshipType+')'
-                
+
                 if sourceTerm not in out.keys():
                     out[sourceTerm] = {}
                 if relationshipType not in [i for i in out[sourceTerm]]:
                     out[sourceTerm][relationshipType] = []
-                
+
                 out[sourceTerm][relationshipType].append(targetTerm)
 
         return out
@@ -106,7 +106,7 @@ class VdexVocabulary(object):
         relations = self.getRelations(context, lang, items)
         terms = []
         for item in items:
-            
+
             terms.append(VdexTerm(
                 item['key'],
                 item['key'],
@@ -122,6 +122,6 @@ class VdexVocabulary(object):
                 terms.sort(key = lambda x: collator.key(x.title))
             except:
                 terms.sort(key = lambda x: x.title)
-            
+
         return SimpleVocabulary(terms)
 
