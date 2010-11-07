@@ -24,6 +24,8 @@ class VdexVocabulary(object):
         finally:
             f.close()
 
+        self.cache = {}
+
     def getTerms(self, lang):
         xpath = self.vdex.vdexTag('term')
         terms = self.vdex.tree._root.findall(xpath)
@@ -101,6 +103,9 @@ class VdexVocabulary(object):
         except:
             lang = None
 
+        if lang in self.cache:
+            return self.cache[lang]
+
         # build terms list
         items = self.getTerms(lang)
         relations = self.getRelations(context, lang, items)
@@ -112,7 +117,7 @@ class VdexVocabulary(object):
                 item['key'],
                 item['value'],
                 item['description'],
-                relations.get(item['key'], [])))
+                relations.get(item['key'], {})))
 
         # try to do ordering with zope.ucol support
         if not self.vdex.order_significant:
@@ -123,5 +128,6 @@ class VdexVocabulary(object):
             except:
                 terms.sort(key = lambda x: x.title)
 
-        return SimpleVocabulary(terms)
+        self.cache[lang] = SimpleVocabulary(terms)
+        return self.cache[lang]
 
