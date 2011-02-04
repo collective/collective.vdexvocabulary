@@ -99,7 +99,8 @@ class VdexVocabulary(object):
         try:
             # TODO: need to depend only on zope
             from Products.CMFCore.utils import getToolByName
-            lang = getToolByName(context, 'portal_languages').getPreferredLanguage()
+            from zope.app.component.hooks import getSite
+            lang = getToolByName(getSite(), 'portal_languages').getPreferredLanguage()
         except:
             lang = None
 
