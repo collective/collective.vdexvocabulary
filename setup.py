@@ -24,7 +24,7 @@ setup(name='collective.vdexvocabulary',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'distribute',
+          'setuptools',
           'imsvdex',
           'zope.schema',
           'zope.interface',
