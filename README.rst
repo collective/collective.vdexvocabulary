@@ -175,6 +175,7 @@ History
  * don't use context to determine current language, but use getSite. 
    context may be adapter or other object without acquisition 
    (eg. in forms with ignoreContext=True).
+ * depend on "setuptools", not "distribute"
 
 0.1.1 (2010-10-11)
 ------------------
