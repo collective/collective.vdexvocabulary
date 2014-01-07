@@ -169,7 +169,7 @@ TODO
 History
 =======
 
-0.1.2dev
+0.1.2 (2014-01-07)
 ------------------
 
  * don't use context to determine current language, but use getSite. 
