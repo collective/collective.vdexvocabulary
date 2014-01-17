@@ -5,6 +5,7 @@ import os
 import zope.interface
 import zope.component.zcml
 import zope.configuration
+import zope.schema
 
 
 class IVdexVocabulary(zope.interface.Interface):
