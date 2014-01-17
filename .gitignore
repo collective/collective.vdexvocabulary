@@ -1,7 +1,11 @@
 *.pyc
 *.swp
 *.egg-info
+*eggs/
+.*.cfg
 bin/
+local/
+parts/
 elementtree-1.2.7_20070827_preview-py2.6.egg/
 elementtreewriter-1.1-py2.6.egg/
 dist/
@@ -17,3 +21,5 @@ zope.i18nmessageid-3.5.2-py2.6-macosx-10.6-x86_64.egg/
 zope.interface-3.6.1-py2.6-macosx-10.6-x86_64.egg/
 zope.schema-3.6.4-py2.6.egg/
 zope.testrunner-4.0.0b3-py2.6.egg/
+.project
+.pydevproject
