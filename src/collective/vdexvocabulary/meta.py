@@ -26,7 +26,9 @@ class IVdexVocabulary(zope.interface.Interface):
 
 
 def registerfile(_context, filename, cls):
-        vocabulary = cls(filename)
+        abs_filename = os.path.join(directory, filename)
+        abs_filename = os.path.abspath(abs_filename)
+        vocabulary = cls(abs_filename)
         zope.component.zcml.utility(_context,
             provides=zope.schema.interfaces.IVocabularyFactory,
             name=vocabulary.vdex.getVocabIdentifier(),
