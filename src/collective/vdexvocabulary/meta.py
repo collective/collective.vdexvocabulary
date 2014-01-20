@@ -24,14 +24,14 @@ class IVdexVocabulary(zope.interface.Interface):
         )
 
 
-def VdexVocabularyDirective(_context, filename=None, directory=None):
+def VdexVocabularyDirective(_context, file=None, directory=None):
     """ZCML directive."""
 
-    if filename is None and directory is None:
+    if file is None and directory is None:
         raise TypeError("Either 'filename' or 'directory' must be given")
 
-    if filename:
-        vocabulary = VdexVocabulary(filename)
+    if file:
+        vocabulary = VdexVocabulary(file)
         zope.component.zcml.utility(_context,
             provides=zope.schema.interfaces.IVocabularyFactory,
             name=vocabulary.vdex.getVocabIdentifier(),
