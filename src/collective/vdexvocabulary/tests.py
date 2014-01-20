@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from interlude import interact
 
 import doctest
