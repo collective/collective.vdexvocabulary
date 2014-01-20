@@ -1,5 +1,6 @@
 from collective.vdexvocabulary import MessageFactory as _
 from collective.vdexvocabulary.vocabulary import VdexVocabulary
+from collective.vdexvocabulary.treevocabulary import VdexTreeVocabulary
 
 import os
 import zope.interface
@@ -24,24 +25,38 @@ class IVdexVocabulary(zope.interface.Interface):
         )
 
 
-def VdexVocabularyDirective(_context, file=None, directory=None):
-    """ZCML directive."""
-
-    if file is None and directory is None:
-        raise TypeError("Either 'filename' or 'directory' must be given")
-
-    if file:
-        vocabulary = VdexVocabulary(file)
+def registerfile(_context, filename, cls):
+        vocabulary = cls(filename)
         zope.component.zcml.utility(_context,
             provides=zope.schema.interfaces.IVocabularyFactory,
             name=vocabulary.vdex.getVocabIdentifier(),
             component=vocabulary)
 
-    if directory:
+
+def base_directive(_context, cls, file=None, directory=None):
+    if file is None and directory is None:
+        raise TypeError("Either 'filename' xor 'directory' must be given")
+    if file:
+        registerfile(_context, file, cls)
+    else:
         for filename in os.listdir(directory):
-            if filename[-5:] == '.vdex':
-                vocabulary = VdexVocabulary(os.path.join(directory, filename))
-                zope.component.zcml.utility(_context,
-                    provides=zope.schema.interfaces.IVocabularyFactory,
-                    name=vocabulary.vdex.getVocabIdentifier(),
-                    component=vocabulary)
+            if filename.endswith('.vdex'):
+                registerfile(_context, filename, cls)
+
+
+def VdexVocabularyDirective(_context, file=None, directory=None):
+    """ZCML directive to provide flat vdex vocabularies."""
+    base_directive(_context,
+        VdexVocabulary,
+        file=file,
+        directory=directory
+    )
+
+
+def VdexTreeVocabularyDirective(_context, file=None, directory=None):
+    """ZCML directive to provide tree like vocabularies."""
+    base_directive(_context,
+        VdexTreeVocabulary,
+        file=file,
+        directory=directory
+    )

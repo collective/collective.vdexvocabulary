@@ -9,6 +9,12 @@
             schema=".meta.IVdexVocabulary"
             handler=".meta.VdexVocabularyDirective"
             />
+
+        <meta:directive
+            name="treevocabulary"
+            schema=".meta.IVdexVocabulary"
+            handler=".meta.VdexTreeVocabularyDirective"
+            />
             
     </meta:directives>
            
