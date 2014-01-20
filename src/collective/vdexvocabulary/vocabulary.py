@@ -33,12 +33,13 @@ class VdexVocabulary(object):
         xpath = self.vdex.vdexTag('term')
         terms = self.vdex.tree._root.findall(xpath)
         out = []
-        if len(terms) != 0:
-            for term in terms:
-                out.append(dict(
-                    key=self.vdex.getTermIdentifier(term),
-                    value=self.vdex.getTermCaption(term, lang),
-                    description=self.vdex.getTermDescription(term, lang)))
+        if len(terms) == 0:
+            return []
+        for term in terms:
+            out.append(dict(
+                key=self.vdex.getTermIdentifier(term),
+                value=self.vdex.getTermCaption(term, lang),
+                description=self.vdex.getTermDescription(term, lang)))
         return out
 
     def getRelations(self, context, lang, items):
@@ -154,8 +155,10 @@ class VdexVocabulary(object):
             from zope.app.component.hooks import getSite
             lang_tool = getToolByName(getSite(), 'portal_languages')
             lang = lang_tool.getPreferredLanguage()
-        except:
+            logger.debug('Got preferred language "%s"' % lang)
+        except ImportError:
             lang = None
+            logger.debug('Cant get preferred language, use default language.)
 
         if lang in self.cache:
             return self.cache[lang]
