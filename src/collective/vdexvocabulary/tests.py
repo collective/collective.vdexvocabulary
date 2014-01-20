@@ -13,7 +13,7 @@ optionflags = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
 TESTFILES = [
     'term.rst',
     'treevocabulary.rst',
-#    'meta.rst',
+    'meta.rst',
 ]
 
 

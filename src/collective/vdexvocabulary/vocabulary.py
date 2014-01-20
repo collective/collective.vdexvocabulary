@@ -158,7 +158,7 @@ class VdexVocabulary(object):
             logger.debug('Got preferred language "%s"' % lang)
         except ImportError:
             lang = None
-            logger.debug('Cant get preferred language, use default language.)
+            logger.debug('Cant get preferred language, use default language.')
 
         if lang in self.cache:
             return self.cache[lang]

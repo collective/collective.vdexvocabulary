@@ -1,0 +1,1 @@
+>>> from collective.vdexvocabulary import meta
