@@ -34,3 +34,17 @@ class VdexTreeVocabulary(TreeVocabulary):
             subtree[term] = VdexTreeVocabulary.terms_factory()
             if vdex_subtree:
                 self._createTermTree(subtree[term], vdex_subtree)
+
+
+class VdexTreeVocabularyFactory(object):
+
+    def __init__(self, filename):
+        self.vocabulary = VdexTreeVocabulary(filename)
+
+    @property
+    def vdex(self):
+        return self.vocabulary.vdex
+
+
+    def __call__(self, context):
+        return self.vocabulary

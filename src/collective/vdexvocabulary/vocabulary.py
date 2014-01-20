@@ -11,7 +11,7 @@ logger = logging.getLogger("collective.vdexvocabulary")
 
 
 class VdexVocabulary(object):
-    """Zope Vocabulary implementation for VDEX."""
+    """Zope Vocabulary Factory implementation for VDEX."""
 
     def __init__(self, vdex_filename, default_lang='en',
                  fallback_to_default_language=True):

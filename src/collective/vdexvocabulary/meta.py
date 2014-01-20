@@ -1,6 +1,6 @@
 from collective.vdexvocabulary import MessageFactory as _
 from collective.vdexvocabulary.vocabulary import VdexVocabulary
-from collective.vdexvocabulary.treevocabulary import VdexTreeVocabulary
+from collective.vdexvocabulary.treevocabulary import VdexTreeVocabularyFactory
 
 import os
 import zope.interface
@@ -24,14 +24,12 @@ class IVdexVocabulary(zope.interface.Interface):
         required=False
         )
 
-
 def registerfile(_context, filename, cls):
-        abs_filename = os.path.abspath(abs_filename)
-        vocabulary = cls(abs_filename)
+        vocabulary_factory = cls(os.path.abspath(filename))
         zope.component.zcml.utility(_context,
             provides=zope.schema.interfaces.IVocabularyFactory,
-            name=vocabulary.vdex.getVocabIdentifier(),
-            component=vocabulary)
+            name=vocabulary_factory.vdex.getVocabIdentifier(),
+            component=vocabulary_factory)
 
 
 def base_directive(_context, cls, file=None, directory=None):
@@ -57,7 +55,7 @@ def VdexVocabularyDirective(_context, file=None, directory=None):
 def VdexTreeVocabularyDirective(_context, file=None, directory=None):
     """ZCML directive to provide tree like vocabularies."""
     base_directive(_context,
-        VdexTreeVocabulary,
+        VdexTreeVocabularyFactory,
         file=file,
         directory=directory
     )
