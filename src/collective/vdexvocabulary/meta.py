@@ -26,7 +26,6 @@ class IVdexVocabulary(zope.interface.Interface):
 
 
 def registerfile(_context, filename, cls):
-        abs_filename = os.path.join(directory, filename)
         abs_filename = os.path.abspath(abs_filename)
         vocabulary = cls(abs_filename)
         zope.component.zcml.utility(_context,
@@ -43,7 +42,7 @@ def base_directive(_context, cls, file=None, directory=None):
     else:
         for filename in os.listdir(directory):
             if filename.endswith('.vdex'):
-                registerfile(_context, filename, cls)
+                registerfile(_context, os.path.join(directory, filename), cls)
 
 
 def VdexVocabularyDirective(_context, file=None, directory=None):
