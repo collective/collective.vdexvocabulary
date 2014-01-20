@@ -1,0 +1,86 @@
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0" orderSignificant="true">
+  <vocabIdentifier>beeeurope</vocabIdentifier>
+  <vocabName>
+    <langstring language="en">European Honey Bees</langstring>
+    <langstring language="de">EWuropäische Honigbiene</langstring>
+  </vocabName>
+  <term>
+    <termIdentifier>nwe</termIdentifier>
+    <caption>
+      <langstring language="en">North-west of Europe</langstring>
+      <langstring language="de">Nordwesteuropa</langstring>
+    </caption>
+    <term>
+      <termIdentifier>nwe.1</termIdentifier>
+      <caption>
+        <langstring language="en">A. m. iberica</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>nwe.2</termIdentifier>
+      <caption>
+        <langstring language="en">A. m. intermissa</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>nwe.3</termIdentifier>
+      <caption>
+        <langstring language="en">A. m. lihzeni</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>nwe.4</termIdentifier>
+      <caption>
+        <langstring language="en">A. m. mellifera</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>nwe.5</termIdentifier>
+      <caption>
+        <langstring language="en">A. m. sahariensis</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>swe</termIdentifier>
+    <caption>
+      <langstring language="en">South-west of Europe</langstring>
+    </caption>
+    <term>
+      <termIdentifier>swe.1</termIdentifier>
+      <caption>
+        <langstring language="en">A. m. carnica</langstring>
+      </caption>
+    </term>
+   <term>
+      <termIdentifier>swe.2</termIdentifier>
+      <caption>
+        <langstring language="en">A. m. cecropia</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>swe.3</termIdentifier>
+      <caption>
+        <langstring language="en">A. m. ligustica</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>swe.4</termIdentifier>
+      <caption>
+        <langstring language="en">A. m. macedonica</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>swe.5</termIdentifier>
+      <caption>
+        <langstring language="en">A. m. ruttneri</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>swe.6</termIdentifier>
+      <caption>
+        <langstring language="en">A. m. sicula</langstring>
+      </caption>
+    </term>
+  </term>
+</vdex>
