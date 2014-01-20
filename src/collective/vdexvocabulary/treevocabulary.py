@@ -5,13 +5,13 @@ import imsvdex.vdex
 import os
 
 
-class VDexTreeVocabulary(TreeVocabulary):
+class VdexTreeVocabulary(TreeVocabulary):
 
     def __init__(self, filename,
                  default_lang='en',
                  fallback_to_default_language=True,
                  *interfaces):
-        super(VDexTreeVocabulary, self).__init__({}, *interfaces)
+        super(VdexTreeVocabulary, self).__init__({}, *interfaces)
         if not os.path.isabs(filename):
             raise Exception('Please set absolute path for filename')
         with open(filename) as vdexfile:
@@ -31,6 +31,6 @@ class VDexTreeVocabulary(TreeVocabulary):
         for key, item_tuple in vdexdict.items():
             value, vdex_subtree = item_tuple
             term = VdexTerm(key, key, value)
-            subtree[term] = VDexTreeVocabulary.terms_factory()
+            subtree[term] = VdexTreeVocabulary.terms_factory()
             if vdex_subtree:
                 self._createTermTree(subtree[term], vdex_subtree)
