@@ -11,8 +11,8 @@ class VdexTerm(object):
 
     implements(ITokenizedTerm)
 
-
-    def __init__(self, value, token=None, title=None, description=None, related=[]):
+    def __init__(self, value, token=None, title=None, description=None,
+                 related=[]):
         self.value = value
         if token is None:
             token = value
@@ -25,4 +25,3 @@ class VdexTerm(object):
             directlyProvides(self, ITitledTokenizedTerm)
         self.description = description
         self.related = related
-        
