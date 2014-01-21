@@ -29,6 +29,9 @@ class VdexVocabulary(object):
 
         self.cache = {}
 
+    def vocab_identifier(self):
+        return self.vdex.getVocabIdentifier()
+
     def getTerms(self, lang):
         xpath = self.vdex.vdexTag('term')
         terms = self.vdex.tree._root.findall(xpath)

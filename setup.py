@@ -33,6 +33,7 @@ setup(
         'zope.interface',
         'zope.component',
         'zope.configuration',
+        'zope.i18n',
         'zope.i18nmessageid',
     ],
     test_suite="tests.test_suite",

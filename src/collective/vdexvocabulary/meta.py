@@ -28,7 +28,7 @@ def registerfile(_context, filename, cls):
         vocabulary_factory = cls(os.path.abspath(filename))
         zope.component.zcml.utility(_context,
             provides=zope.schema.interfaces.IVocabularyFactory,
-            name=vocabulary_factory.vdex.getVocabIdentifier(),
+            name=vocabulary_factory.vocab_identifer,
             component=vocabulary_factory)
 
 
