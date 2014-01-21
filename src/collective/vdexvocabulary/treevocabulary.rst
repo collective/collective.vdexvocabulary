@@ -5,13 +5,14 @@ A tree like (or also flat)  vocabulary for zope toolkit.
 
 First the imports::
 
-    >>> from collective.vdexvocabulary.treevocabulary import VdexTreeVocabulary    
+    >>> from collective.vdexvocabulary.treevocabulary import VdexTreeVocabularyFactory    
     >>> import os
     >>> testfile = os.path.join(VDEXDIR, 'treetest.vdex')
     
 Create a vocabulary from a file::    
     
-    >>> vdex_vocab = VdexTreeVocabulary(testfile)
+    >>> vdex_vocab_factory = VdexTreeVocabularyFactory(testfile)
+    >>> vdex_vocab = vdex_vocab_factory(None)
 
 Some checks, root level::          
     

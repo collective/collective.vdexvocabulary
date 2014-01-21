@@ -60,8 +60,10 @@ class VdexTreeVocabulary(TreeVocabulary):
     """A tree vocabulary
     """
 
-    def __init__(self, filename, *interfaces):
+    def __init__(self, filename, default_language, *interfaces):
         super(VdexTreeVocabulary, self).__init__({}, *interfaces)
+
+        self.default_language = default_language
 
         # read vdex file
         if not os.path.isabs(filename):
@@ -108,10 +110,9 @@ class VdexTreeVocabulary(TreeVocabulary):
 
 class VdexTreeVocabularyFactory(object):
 
-    def __init__(self, filename):
+    def __init__(self, filename, default_language=None):
         self.filename = filename
-        self.default_language = default_language
-        self.vocabulary = VdexTreeVocabulary(filename)
+        self.vocabulary = VdexTreeVocabulary(filename, default_language)
 
     def vocab_identifier(self):
         return self.vocabulary.vdex.getVocabIdentifier()
