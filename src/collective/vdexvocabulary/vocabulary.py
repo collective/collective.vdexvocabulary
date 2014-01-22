@@ -29,6 +29,7 @@ class VdexVocabulary(object):
 
         self.cache = {}
 
+    @property
     def vocab_identifier(self):
         return self.vdex.getVocabIdentifier()
 

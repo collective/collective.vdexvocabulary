@@ -28,7 +28,7 @@ def registerfile(_context, filename, cls):
         vocabulary_factory = cls(os.path.abspath(filename))
         zope.component.zcml.utility(_context,
             provides=zope.schema.interfaces.IVocabularyFactory,
-            name=vocabulary_factory.vocab_identifer,
+            name=vocabulary_factory.vocab_identifier,
             component=vocabulary_factory)
 
 
@@ -46,7 +46,7 @@ def base_directive(_context, cls, file=None, directory=None):
 def VdexVocabularyDirective(_context, file=None, directory=None):
     """ZCML directive to provide flat vdex vocabularies."""
     base_directive(_context,
-        VdexVocabulary,
+        VdexVocabulary,  # this is in fact the factory
         file=file,
         directory=directory
     )
