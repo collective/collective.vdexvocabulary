@@ -114,6 +114,7 @@ class VdexTreeVocabularyFactory(object):
         self.filename = filename
         self.vocabulary = VdexTreeVocabulary(filename, default_language)
 
+    @property
     def vocab_identifier(self):
         return self.vocabulary.vdex.getVocabIdentifier()
 
