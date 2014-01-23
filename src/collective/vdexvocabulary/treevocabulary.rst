@@ -62,4 +62,22 @@ check translations::
     >>> translate(vdex_vocab.term_by_value['nwe'].title, target_language='de')
     u'Nordwesteuropa'
 
-    >> interact(locals())    
+check with negiotation
+
+build mock negotiator::
+
+    >>> from zope.i18n.interfaces import INegotiator
+    >>> from zope.interface import implementer
+    >>> @implementer(INegotiator)
+    ... class MockNegotiator(object):
+    ...     def getLanguage(self, langs, context):
+    ...         return 'de'
+    >>> from zope.component import provideUtility
+    >>> provideUtility(MockNegotiator(), INegotiator)
+    
+run with mock::
+
+    
+    >>> translate(vdex_vocab.term_by_value['nwe'].title, context={})
+    u'Nordwesteuropa'
+    
