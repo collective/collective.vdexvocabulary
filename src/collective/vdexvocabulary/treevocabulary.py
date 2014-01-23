@@ -1,4 +1,5 @@
 from collective.vdexvocabulary.term import VdexTerm
+from zope.component import getUtility
 from zope.component import provideUtility
 from zope.i18n.interfaces import INegotiator
 from zope.i18n.interfaces import ITranslationDomain
