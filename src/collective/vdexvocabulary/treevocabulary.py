@@ -96,12 +96,20 @@ class VdexTreeVocabulary(TreeVocabulary):
         term_elements = element.findall(self.vdex.vdexTag('term'))
         for term_element in term_elements:
             identifier = self.vdex.getTermIdentifier(term_element)
+            default_title = self.vdex.getTermCaption(
+                term_element,
+                self.default_language,
+            )
+            default_description = self.vdex.getTermDescription(
+                term_element,
+                self.default_language,
+            )
             term = VdexTerm(
                 identifier,  # value
                 identifier,  # token
                 # i18n message id for title
                 _('caption|%s' % identifier,
-                  default=identifier.decode('utf-8')),
+                  default=default_title or identifier.decode('utf-8')),
                 # i18n message id for description
                 _('description|%s' % identifier, default=u""),
                 # todo: add related
