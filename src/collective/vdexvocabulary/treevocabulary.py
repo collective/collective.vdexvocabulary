@@ -54,8 +54,10 @@ class VdexTranslationDomain(object):
             target_language = negotiator.getLanguage(langs, context)
 
         # fetch matching translation or default
-        return translations.get(target_language, default).decode('utf-8')
-
+        message = translations.get(target_language, default)
+        if not isinstance(message, unicode):
+            return message.decode('utf-8')
+        return message
 
 class VdexTreeVocabulary(TreeVocabulary):
     """A tree vocabulary
