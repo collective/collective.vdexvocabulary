@@ -26,3 +26,11 @@ class VdexTerm(object):
             directlyProvides(self, ITitledTokenizedTerm)
         self.description = description
         self.related = related
+
+    def __repr__(self):
+        rep = "<%s '%s' at %s>" % (
+            self.__class__.__name__,
+            self.token,
+            hex(id(self))[:-1],
+        )
+        return rep
