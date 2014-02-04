@@ -1,26 +1,26 @@
 # -*- coding: utf-8 -*-
 
-Import Term and initalize:: 
+Import Term and initalize::
 
     >>> from collective.vdexvocabulary.term import VdexTerm
-    
+
 We use some german umlauts here, but repr is needed in a doctest :/
 
-::    
-    
+::
+
     >>> term = VdexTerm(u'f\xfc\xfc')
     >>> term
-    <collective.vdexvocabulary.term.VdexTerm object at 0x...>
+    <VdexTerm 'füü' at 0x...>
 
     >>> isinstance(term.value, unicode)
     True
-    
+
     >>> not isinstance(term.token, unicode)
     True
 
     >>> term.title is None
     True
-    
+
 Now with numbers:::
 
     >>> term.description is None
@@ -38,7 +38,7 @@ Now with numbers:::
 
     >>> term2.value
     12.34
-    
+
     >>> term2.title
     'foo'
 
