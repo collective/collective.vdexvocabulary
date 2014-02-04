@@ -63,22 +63,22 @@ def base_directive(_context, cls, filename=None, directory=None,
                 registerfile(_context, os.path.join(directory, filename), cls)
 
 
-def VdexVocabularyDirective(_context, file_=None, directory=None,  # nopep8
+def VdexVocabularyDirective(_context, file=None, directory=None,  # nopep8
                             environment=None):  # nopep8
     """ZCML directive to provide flat vdex vocabularies."""
     base_directive(_context,
         VdexVocabulary,  # this is in fact the factory
-        filename=file_,
+        filename=file,
         directory=directory,
         environment=environment,
     )
 
 
-def VdexTreeVocabularyDirective(_context, file_=None, directory=None,  # nopep8
+def VdexTreeVocabularyDirective(_context, file=None, directory=None,  # nopep8
                                 environment=None):  # nopep8
     """ZCML directive to provide tree like vocabularies."""
     base_directive(_context,
         VdexTreeVocabularyFactory,
-        filename=file_,
+        filename=file,
         directory=directory
     )
