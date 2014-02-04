@@ -3,7 +3,7 @@
     xmlns:meta="http://namespaces.zope.org/meta">
 
     <meta:directives namespace="http://namespaces.zope.org/vdex">
-        
+
         <meta:directive
             name="vocabulary"
             schema=".meta.IVdexVocabulary"
@@ -15,7 +15,7 @@
             schema=".meta.IVdexVocabulary"
             handler=".meta.VdexTreeVocabularyDirective"
             />
-            
+
     </meta:directives>
-           
+
 </configure>

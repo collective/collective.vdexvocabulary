@@ -2,11 +2,14 @@ from collective.vdexvocabulary import MessageFactory as _
 from collective.vdexvocabulary.vocabulary import VdexVocabulary
 from collective.vdexvocabulary.treevocabulary import VdexTreeVocabularyFactory
 
+import logging
 import os
 import zope.interface
 import zope.component.zcml
 import zope.configuration
 import zope.schema
+
+logger = logging.getLogger('collective.vdexvocabulary')
 
 
 class IVdexVocabulary(zope.interface.Interface):
@@ -24,17 +27,34 @@ class IVdexVocabulary(zope.interface.Interface):
         required=False
         )
 
-def registerfile(_context, filename, cls):
-        vocabulary_factory = cls(os.path.abspath(filename))
+    environment = zope.configuration.fields.Path(
+        title=_(u"Environment variable containing absolute base path"),
+        description=_(u""),
+        required=False
+        )
+
+
+def registerfile(_context, filename, cls, default_language=None):
+        filename = os.path.abspath(filename)
+        vocabulary_factory = cls(filename)
+        logger.debug('loading vocabulary at {0} as {1}'.format(filename, cls))
         zope.component.zcml.utility(_context,
             provides=zope.schema.interfaces.IVocabularyFactory,
             name=vocabulary_factory.vocab_identifier,
             component=vocabulary_factory)
 
 
-def base_directive(_context, cls, file=None, directory=None):
-    if file is None and directory is None:
+def base_directive(_context, cls, filename=None, directory=None,
+                   environment=None):
+    if filename is None and directory is None:
         raise TypeError("Either 'filename' xor 'directory' must be given")
+    if environment:
+        base_dir = os.environ.get(environment, None)
+        if base_dir:
+            if filename:
+                filename = os.path.join(base_dir, filename)
+            else:
+                directory = os.path.join(base_dir, directory)
     if file:
         registerfile(_context, file, cls)
     else:
@@ -43,19 +63,22 @@ def base_directive(_context, cls, file=None, directory=None):
                 registerfile(_context, os.path.join(directory, filename), cls)
 
 
-def VdexVocabularyDirective(_context, file=None, directory=None):
+def VdexVocabularyDirective(_context, file_=None, directory=None,  # nopep8
+                            environment=None):  # nopep8
     """ZCML directive to provide flat vdex vocabularies."""
     base_directive(_context,
         VdexVocabulary,  # this is in fact the factory
-        file=file,
-        directory=directory
+        filename=file_,
+        directory=directory,
+        environment=environment,
     )
 
 
-def VdexTreeVocabularyDirective(_context, file=None, directory=None):
+def VdexTreeVocabularyDirective(_context, file_=None, directory=None,  # nopep8
+                                environment=None):  # nopep8
     """ZCML directive to provide tree like vocabularies."""
     base_directive(_context,
         VdexTreeVocabularyFactory,
-        file=file,
+        filename=file_,
         directory=directory
     )
