@@ -59,6 +59,7 @@ class VdexTranslationDomain(object):
             return message.decode('utf-8')
         return message
 
+
 class VdexTreeVocabulary(TreeVocabulary):
     """A tree vocabulary
     """
@@ -88,7 +89,6 @@ class VdexTreeVocabulary(TreeVocabulary):
         self._createTermTree(rootelement, self._terms, message_factory)
         self._populateIndexes(self._terms)
 
-
     def _createTermTree(self, element, terms, _):
         """ Helper method that creates a tree-like dict with ITokenizedTerm
         objects as keys from a imsvdex tree.
@@ -107,11 +107,12 @@ class VdexTreeVocabulary(TreeVocabulary):
             term = VdexTerm(
                 identifier,  # value
                 identifier,  # token
-                # i18n message id for title
+                # i18n message id for title/caption
                 _('caption|%s' % identifier,
                   default=default_title or identifier.decode('utf-8')),
                 # i18n message id for description
-                _('description|%s' % identifier, default=u""),
+                _('description|%s' % identifier,
+                  default=default_description or identifier.decode('utf-8')),
                 # todo: add related
                 []
             )
@@ -121,9 +122,9 @@ class VdexTreeVocabulary(TreeVocabulary):
 
 class VdexTreeVocabularyFactory(object):
 
-    def __init__(self, filename, default_language=None):
+    def __init__(self, filename, default_lang=None):
         self.filename = filename
-        self.vocabulary = VdexTreeVocabulary(filename, default_language)
+        self.vocabulary = VdexTreeVocabulary(filename, default_lang)
 
     @property
     def vocab_identifier(self):
