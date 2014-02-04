@@ -1,9 +1,10 @@
 What this package do?
 =====================
 
-`IMS VDEX`_ is a standard for exchanging vocabularies. collective.vdexvocabulary
-create bridge between vdex vocabularies and zope vocabularies, so you can
-easily use it in systems like Plone / Zope.
+`IMS VDEX`_ is a standard for exchanging vocabularies.
+``collective.vdexvocabulary`` bridges between vdex vocabularies and zope
+vocabularies, so you can easily use it in systems like Plone/ Zope, Pyramid or
+any other Zope-Toolkit supporting system.
 
 
 .. contents::
@@ -12,15 +13,23 @@ easily use it in systems like Plone / Zope.
 Whats so special about it?
 ==========================
 
-Imagine you have big vocabularies with a lot of relations. I'm talking +10.000 
-terms with +30.000 relations. So this would be perfect use case to use
-collective.vdexvocabulary. Also there are other stuff which I didn't found in
-other vocabulary packages for Plone/Zope: 
+``collective.vdexvocabulary`` contains two different types of vocabularies:
 
- * i18n support (as it is defined in IMS VDEX)
- * proper order also with unicode charecters (if zope.ucol is installed)
- * easy registration using zcml
- * relations as it specified in IMS VDEX standard
+1. If you have big vocabularies with a lot of relations, like +10.000
+   terms with +30.000 relations, so this would be perfect use case to use
+   the ``VdexVocabulary`` type of ``collective.vdexvocabulary``. Also there are
+   other stuff which not supported by other vocabulary packages for Plone/Zope:
+
+2. If you have tree-like vocabularies this is perfect too. ``TreeVocabulary``
+   supports nested/ hieracical vocabularies.
+
+* i18n support. IMS VDEX supports translations within the VDEX-XML-File, both
+  vocabulary types are supporting this way of translations.
+* proper order also with unicode charecters (if zope.ucol is installed,
+  vdexvocabulary only). If VDEX is order-sigificant the order given by vdex
+  file is taken (supported by both vocabulary types).
+* easy registration using zcml
+* relations as it specified in IMS VDEX standard (for now only VdexVocabulary)
 
 
 How do I use it?
@@ -38,7 +47,7 @@ In your configure.zcml add::
 
 And to register a vdex vocabulary simply add line bellow pointing to file
 containing vdex vocabulary::
- 
+
     <configure
         ...
         xmlns:vdex="http://namespaces.zope.org/vdex"
@@ -46,7 +55,7 @@ containing vdex vocabulary::
 
       <vdex:vocabulary file="path-to/very-interesting.xml" />
 
-To make registration of vocabularies even easier you can also register 
+To make registration of vocabularies even easier you can also register
 several vocabularies and just point to directory::
 
     <configure
@@ -59,9 +68,20 @@ several vocabularies and just point to directory::
 vdex files in ``path-to/my-vdex-vocabularies`` directory should have ending
 ``.vdex`` to be recognized by ``vdex:vocabulary`` ZCML directive.
 
+Sometimes you dont want VDEX-files inside your code tree. Therefore an environment
+variable can be given defining the base directory::
+
+      <vdex:vocabulary file="my-vocabulary.vdex: environment="VDEX_BASE_DIR" />
+
+Before running the code one has to do i.e. an ``export VDEX_BASE_DIR=/home/joe/vdex/``
+in order to make it look for the vdex at ``/home/joe/vdex/my-vocabulary.vdex``.
+
 
 Example VDEX file
 =================
+
+Flat with with relations
+------------------------
 
 Example of car manufacturers list (``car_manufacturers.vdex``).::
 
@@ -119,6 +139,53 @@ List of car models (``car_models.vdex``).::
 
     </vdex>
 
+Hieracical Tree
+---------------
+
+::
+
+    <vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0" orderSignificant="true">
+      <vocabIdentifier>insects</vocabIdentifier>
+      <vocabName>
+        <langstring language="en">insects</langstring>
+        <langstring language="de">Insekten</langstring>
+        <langstring language="it">insetto</langstring>
+      </vocabName>
+      <term>
+        <termIdentifier>k01</termIdentifier>
+        <caption>
+          <langstring language="en">ant</langstring>
+          <langstring language="de">Ameise</langstring>
+          <langstring language="it">formica</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>k02</termIdentifier>
+        <caption>
+          <langstring language="en">bee</langstring>
+          <langstring language="de">Biene</langstring>
+          <langstring language="it">ape</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>k03</termIdentifier>
+        <caption>
+          <langstring language="en">wasp</langstring>
+          <langstring language="de">Wespe</langstring>
+          <langstring language="it">vespa</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>k04</termIdentifier>
+        <caption>
+          <langstring language="en">hornet</langstring>
+          <langstring language="de">Hornisse</langstring>
+          <langstring language="it">calabrone</langstring>
+        </caption>
+      </term>
+    </vdex>
+
+
 How to access relations (from code)
 ===================================
 
@@ -148,56 +215,80 @@ Where can I complain / help / send rum?
 Credit
 ======
 
- * Rok Garbas, http://garbas.si, <rok@garbas.si>, Author
- * Seantis gmbh, http://www.seantis.ch
-    Thank you for initial idea with seantis.vdex where got the idea and then
-    reimplement and extend it.
+* Rok Garbas, http://garbas.si, <rok@garbas.si>, Author
+
+* Seantis gmbh, http://www.seantis.ch
+  Thank you for initial idea with seantis.vdex where got the idea and then
+  reimplement and extend it.
+
+* Jens W Klein, http://kleinundpartner.at, <jens@bluedynamics.com>,
+  Cleanup, Treevocabulary/ i18n-support
 
 
 TODO
 ====
 
- * fetch vocab(s) via url (new directive)
- * load vocabs view entry_points
- * store vocabs (or changed vocabs in zodb), will probably also need diff and merge option
- * write test and get decent test coverage
- * write documentation
- * make ZCML optional
- * make through the web vdex editor (this would probably need sponsoring)
+* fetch vocab(s) via url (new directive)
+
+* load vocabs view entry_points
+
+* store vocabs (or changed vocabs in zodb), will probably also need diff and merge option
+
+* write test and get decent test coverage
+
+* write documentation
+
+* make ZCML optional
+
+* make through the web vdex editor (this would probably need sponsoring)
+
+* add relation support to TreeVocabulary
 
 
 History
 =======
 
-0.1.3dev
-------------------
+0.2dev
+------
+
+* A bunch of refactoring in order to add a new vocab type: TreeVocabulary.
+  As the name suggests, treevocabulary supports
+  ``zope.schema.interfaces.ITreeVocabulary``. It has better i18n-support using
+  own i18n-domains for the caption and description of a term.
+  [jensens]
 
 
 0.1.2 (2014-01-07)
 ------------------
 
- * don't use context to determine current language, but use getSite. 
-   context may be adapter or other object without acquisition 
-   (eg. in forms with ignoreContext=True).
- * depend on "setuptools", not "distribute"
+* don't use context to determine current language, but use getSite.
+  context may be adapter or other object without acquisition
+  (eg. in forms with ignoreContext=True).
+
+* depend on "setuptools", not "distribute"
+
 
 0.1.1 (2010-10-11)
 ------------------
 
- * added **History**, **How to access relations (from code)** and **Example
-   VDEX file** section to README. [garbas]
- * moved code to http://github.com/collective/collective.vdexvocabulary. [garbas]
- * BUG(Fixed): when vdex file was loaded it failed if there were not terms. [garbas]
+* added **History**, **How to access relations (from code)** and **Example
+  VDEX file** section to README. [garbas]
+
+* moved code to http://github.com/collective/collective.vdexvocabulary. [garbas]
+
+* BUG(Fixed): when vdex file was loaded it failed if there were not terms. [garbas]
+
 
 0.1 (2010-06-23)
 ----------------
 
- * add documentation and clean up code a little bit. [garbas]
+* add documentation and clean up code a little bit. [garbas]
+
 
 0.1a1 (2010-04-29)
 ------------------
 
- * initial release. [garbas]
+* initial release. [garbas]
 
 
 .. _`ISO2788`: http://www.imsglobal.org/vocabularies/iso2788_relations.xml
