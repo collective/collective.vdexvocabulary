@@ -5,33 +5,33 @@ A tree like (or also flat)  vocabulary for zope toolkit.
 
 First the imports::
 
-    >>> from collective.vdexvocabulary.treevocabulary import VdexTreeVocabularyFactory    
+    >>> from collective.vdexvocabulary.treevocabulary import VdexTreeVocabularyFactory
     >>> import os
     >>> testfile = os.path.join(VDEXDIR, 'treetest.vdex')
-    
-Create a vocabulary from a file::    
-    
+
+Create a vocabulary from a file::
+
     >>> vdex_vocab_factory = VdexTreeVocabularyFactory(testfile)
     >>> vdex_vocab = vdex_vocab_factory(None)
 
-Some checks, root level::          
-    
+Some checks, root level::
+
     >>> len(vdex_vocab._terms)
     2
-    
+
 And all::
 
     >>> len(vdex_vocab.term_by_value)
     13
 
     >>> len(vdex_vocab.term_by_token)
-    13        
-    
+    13
+
     >>> len(vdex_vocab.path_by_value)
     13
-    
-Look at some details::               
-    
+
+Look at some details::
+
     >>> pprint(vdex_vocab.path_by_value)
     {'nwe': ['nwe'],
      'nwe.1': ['nwe', 'nwe.1'],
@@ -46,7 +46,7 @@ Look at some details::
      'swe.4': ['swe', 'swe.4'],
      'swe.5': ['swe', 'swe.5'],
      'swe.6': ['swe', 'swe.6']}
-     
+
     >>> 'nwe.4' in vdex_vocab
     True
 
@@ -54,7 +54,7 @@ check translations::
 
     >>> from zope.i18n import translate
     >>> translate(vdex_vocab.term_by_value['nwe'].title)
-    u'nwe'
+    u'North-west of Europe'
 
     >>> translate(vdex_vocab.term_by_value['nwe'].title, target_language='en')
     u'North-west of Europe'
@@ -74,10 +74,9 @@ build mock negotiator::
     ...         return 'de'
     >>> from zope.component import provideUtility
     >>> provideUtility(MockNegotiator(), INegotiator)
-    
+
 run with mock::
 
-    
+
     >>> translate(vdex_vocab.term_by_value['nwe'].title, context={})
     u'Nordwesteuropa'
-    
