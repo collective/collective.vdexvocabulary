@@ -3,8 +3,8 @@ What this package do?
 
 `IMS VDEX`_ is a standard for exchanging vocabularies.
 ``collective.vdexvocabulary`` bridges between vdex vocabularies and zope
-vocabularies, so you can easily use it in systems like Plone/ Zope, Pyramid or
-any other Zope-Toolkit supporting system.
+vocabularies (``zope.schema.vocabularies``), so you can easily use it in 
+systems like Plone/ Zope, Pyramid or any other Zope-Toolkit supporting system.
 
 
 .. contents::
@@ -17,18 +17,23 @@ Whats so special about it?
 
 1. If you have big vocabularies with a lot of relations, like +10.000
    terms with +30.000 relations, so this would be perfect use case to use
-   the ``VdexVocabulary`` type of ``collective.vdexvocabulary``. Also there are
-   other stuff which not supported by other vocabulary packages for Plone/Zope:
+   the ``VdexVocabulary`` type of ``collective.vdexvocabulary``. 
 
 2. If you have tree-like vocabularies this is perfect too. ``TreeVocabulary``
    supports nested/ hieracical vocabularies.
 
+Also there are other stuff which not supported by other vocabulary packages 
+(i.e. for Plone/Zope):
+
 * i18n support. IMS VDEX supports translations within the VDEX-XML-File, both
   vocabulary types are supporting this way of translations.
+
 * proper order also with unicode charecters (if zope.ucol is installed,
   vdexvocabulary only). If VDEX is order-sigificant the order given by vdex
   file is taken (supported by both vocabulary types).
+
 * easy registration using zcml
+
 * relations as it specified in IMS VDEX standard (for now only VdexVocabulary)
 
 
