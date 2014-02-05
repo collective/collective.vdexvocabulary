@@ -40,6 +40,9 @@ Also there is other stuff which not supported by other vocabulary packages
 How do I use it?
 ================
 
+Configuration
+-------------
+
 In your configure.zcml add::
 
     <configure
@@ -94,6 +97,10 @@ Before running the code with environment variable relative filenames/directories
 one has to set the environmant variable, i.e. do an
 ``export VDEX_BASE_DIR=/home/joe/vdex/`` in order to make it look for the vdex
 at ``/home/joe/vdex/my-vocabulary.vdex``.
+
+
+Usage in Code
+-------------
 
 
 Example VDEX file
@@ -161,48 +168,94 @@ List of car models (``car_models.vdex``).::
 Hierachical Tree
 ----------------
 
-::
+example of a tree vocabulary::
 
     <vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0" orderSignificant="true">
-      <vocabIdentifier>insects</vocabIdentifier>
+      <vocabIdentifier>beeeurope</vocabIdentifier>
       <vocabName>
-        <langstring language="en">insects</langstring>
-        <langstring language="de">Insekten</langstring>
-        <langstring language="it">insetto</langstring>
+        <langstring language="en">European Honey Bees</langstring>
       </vocabName>
       <term>
-        <termIdentifier>k01</termIdentifier>
+        <termIdentifier>nwe</termIdentifier>
         <caption>
-          <langstring language="en">ant</langstring>
-          <langstring language="de">Ameise</langstring>
-          <langstring language="it">formica</langstring>
+          <langstring language="en">North-west of Europe</langstring>
         </caption>
+        <term>
+          <termIdentifier>nwe.1</termIdentifier>
+          <caption>
+            <langstring language="en">A. m. iberica</langstring>
+          </caption>
+        </term>
+        <term>
+          <termIdentifier>nwe.2</termIdentifier>
+          <caption>
+            <langstring language="en">A. m. intermissa</langstring>
+          </caption>
+        </term>
+        <term>
+          <termIdentifier>nwe.3</termIdentifier>
+          <caption>
+            <langstring language="en">A. m. lihzeni</langstring>
+          </caption>
+        </term>
+        <term>
+          <termIdentifier>nwe.4</termIdentifier>
+          <caption>
+            <langstring language="en">A. m. mellifera</langstring>
+          </caption>
+        </term>
+        <term>
+          <termIdentifier>nwe.5</termIdentifier>
+          <caption>
+            <langstring language="en">A. m. sahariensis</langstring>
+          </caption>
+        </term>
       </term>
       <term>
-        <termIdentifier>k02</termIdentifier>
+        <termIdentifier>swe</termIdentifier>
         <caption>
-          <langstring language="en">bee</langstring>
-          <langstring language="de">Biene</langstring>
-          <langstring language="it">ape</langstring>
+          <langstring language="en">South-west of Europe</langstring>
         </caption>
-      </term>
-      <term>
-        <termIdentifier>k03</termIdentifier>
-        <caption>
-          <langstring language="en">wasp</langstring>
-          <langstring language="de">Wespe</langstring>
-          <langstring language="it">vespa</langstring>
-        </caption>
-      </term>
-      <term>
-        <termIdentifier>k04</termIdentifier>
-        <caption>
-          <langstring language="en">hornet</langstring>
-          <langstring language="de">Hornisse</langstring>
-          <langstring language="it">calabrone</langstring>
-        </caption>
+        <term>
+          <termIdentifier>swe.1</termIdentifier>
+          <caption>
+            <langstring language="en">A. m. carnica</langstring>
+          </caption>
+        </term>
+        <term>
+       <term>
+          <termIdentifier>swe.2</termIdentifier>
+          <caption>
+            <langstring language="en">A. m. cecropia</langstring>
+          </caption>
+        </term>
+        <term>
+          <termIdentifier>swe.3</termIdentifier>
+          <caption>
+            <langstring language="en">A. m. ligustica</langstring>
+          </caption>
+        </term>
+        <term>
+          <termIdentifier>swe.4</termIdentifier>
+          <caption>
+            <langstring language="en">A. m. macedonica</langstring>
+          </caption>
+        </term>
+        <term>
+          <termIdentifier>swe.5</termIdentifier>
+          <caption>
+            <langstring language="en">A. m. ruttneri</langstring>
+          </caption>
+        </term>
+        <term>
+          <termIdentifier>swe.6</termIdentifier>
+          <caption>
+            <langstring language="en">A. m. sicula</langstring>
+          </caption>
+        </term>
       </term>
     </vdex>
+
 
 
 How to access relations (from code)
