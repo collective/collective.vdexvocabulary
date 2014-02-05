@@ -102,6 +102,66 @@ at ``/home/joe/vdex/my-vocabulary.vdex``.
 Usage in Code
 -------------
 
+Vocabularies are named utiltiies in a zope-toolkit manner. The name is taken
+from the vdex file, its the ``vocabIdentifier``.
+
+Given a vocabulary with the name ``beeeurope`` (see tree example below) one has
+to get the utility using the zope component architecture way::
+
+    >>> from zope.component import getUtility
+    >>> from zope.schema.interfaces import IVocabularyFactory
+    >>> factory = zope.component.getUtility(IVocabularyFactory, 'beeeurope')
+
+The factory returns on call a vocabulary. It expects a context, which can be
+``None`` in our case. If you are in an application server pass here your current
+context. In case of flat vocabularies this is used to detect the language, for
+tree vocabularies it is ignored, here an more advanced method is used to support
+i18n::
+
+    >>> context = None
+    >>> vocabulary = factory(context)
+
+Now you can use the vocabulary::
+
+    >>> for term in vocabulary:
+    ...     print term.value
+    ...     print term.token
+    ...     print term.title
+    ...     print term.description
+
+
+How to use tree-vocabularies
+----------------------------
+
+Once looked up as shown above traversing the tree is easy. It works as defined
+in ``zope.schema.interfaces.ITreeVocabulary``. The ``term`` is also the key for
+the sublevel::
+
+    >>> def printlevel(leveldict, ident=0):
+    ...     for term in leveldict:
+    ...         print indent * '  ' + term.title
+    ...         printlevel(leveldict[term], indent+1)
+
+Hint: ``collective.dynatree`` uses this kind of vocabularies and can be used as
+an example for own implementations too.
+
+
+How to access relations (from code)
+-----------------------------------
+
+Relations are defined by `ISO2788`_.
+
+To get listing of BMW car models from above VDEX example you have to::
+
+    >>> from zope.schema.vocabulary import getVocabularyRegistry
+
+    >>> vr = getVocabularyRegistry()
+    >>> car_manufacturers = vr.get(self.context, 'your.package.car_manufacturers')
+    >>> car_models = vr.get(self.context, 'your.package.car_models')
+
+    >>> bmw = car_manufacturers.getTerm('bmw')
+    >>> bmw_car_models = bmw.related.get('NT', [])
+
 
 Example VDEX file
 =================
@@ -255,24 +315,6 @@ example of a tree vocabulary::
         </term>
       </term>
     </vdex>
-
-
-
-How to access relations (from code)
-===================================
-
-Relations are defined by `ISO2788`_.
-
-To get listing of BMW car models from above VDEX example you have to::
-
-    from zope.schema.vocabulary import getVocabularyRegistry
-
-    vr = getVocabularyRegistry()
-    car_manufacturers = vr.get(self.context, 'your.package.car_manufacturers')
-    car_models = vr.get(self.context, 'your.package.car_models')
-
-    bmw = car_manufacturers.getTerm('bmw')
-    bmw_car_models = bmw.related.get('NT', [])
 
 
 Where can I complain / help / send rum?
