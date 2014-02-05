@@ -3,7 +3,7 @@ What this package do?
 
 `IMS VDEX`_ is a standard for exchanging vocabularies.
 ``collective.vdexvocabulary`` bridges between vdex vocabularies and zope
-vocabularies (``zope.schema.vocabularies``), so you can easily use it in 
+vocabularies (``zope.schema.vocabularies``), so you can easily use it in
 systems like Plone/ Zope, Pyramid or any other Zope-Toolkit supporting system.
 
 
@@ -17,18 +17,18 @@ Whats so special about it?
 
 1. If you have big vocabularies with a lot of relations, like +10.000
    terms with +30.000 relations, so this would be perfect use case to use
-   the ``VdexVocabulary`` type of ``collective.vdexvocabulary``. 
+   the ``VdexVocabulary`` type of ``collective.vdexvocabulary``.
 
 2. If you have tree-like vocabularies this is perfect too. ``TreeVocabulary``
    supports nested/ hieracical vocabularies.
 
-Also there are other stuff which not supported by other vocabulary packages 
+Also there is other stuff which not supported by other vocabulary packages
 (i.e. for Plone/Zope):
 
 * i18n support. IMS VDEX supports translations within the VDEX-XML-File, both
   vocabulary types are supporting this way of translations.
 
-* proper order also with unicode charecters (if zope.ucol is installed,
+* proper order also with unicode characters (if zope.ucol is installed,
   vdexvocabulary only). If VDEX is order-sigificant the order given by vdex
   file is taken (supported by both vocabulary types).
 
@@ -60,6 +60,10 @@ containing vdex vocabulary::
 
       <vdex:vocabulary file="path-to/very-interesting.xml" />
 
+or for tree vocabularies::
+
+      <vdex:treevocabulary file="path-to/very-interesting-tree.xml" />
+
 To make registration of vocabularies even easier you can also register
 several vocabularies and just point to directory::
 
@@ -70,16 +74,26 @@ several vocabularies and just point to directory::
 
       <vdex:vocabulary directory="path-to/my-vdex-vocabularies" />
 
+or for tree vocabularies::
+
+      <vdex:treevocabulary directory="path-to/my-vdex-vocabularies" />
+
 vdex files in ``path-to/my-vdex-vocabularies`` directory should have ending
 ``.vdex`` to be recognized by ``vdex:vocabulary`` ZCML directive.
 
-Sometimes you dont want VDEX-files inside your code tree. Therefore an environment
-variable can be given defining the base directory::
+Sometimes you dont want VDEX-files inside your code tree. Therefore an
+environment variable can be given defining the base directory::
 
       <vdex:vocabulary file="my-vocabulary.vdex: environment="VDEX_BASE_DIR" />
 
-Before running the code one has to do i.e. an ``export VDEX_BASE_DIR=/home/joe/vdex/``
-in order to make it look for the vdex at ``/home/joe/vdex/my-vocabulary.vdex``.
+or for tree vocabularies::
+
+      <vdex:treevocabulary file="my-vocabulary.vdex: environment="VDEX_BASE_DIR" />
+
+Before running the code with environment variable relative filenames/directories
+one has to set the environmant variable, i.e. do an
+``export VDEX_BASE_DIR=/home/joe/vdex/`` in order to make it look for the vdex
+at ``/home/joe/vdex/my-vocabulary.vdex``.
 
 
 Example VDEX file
