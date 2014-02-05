@@ -20,7 +20,7 @@ Whats so special about it?
    the ``VdexVocabulary`` type of ``collective.vdexvocabulary``.
 
 2. If you have tree-like vocabularies this is perfect too. ``TreeVocabulary``
-   supports nested/ hieracical vocabularies.
+   supports nested/ hierachical vocabularies.
 
 Also there is other stuff which not supported by other vocabulary packages
 (i.e. for Plone/Zope):
@@ -158,8 +158,8 @@ List of car models (``car_models.vdex``).::
 
     </vdex>
 
-Hieracical Tree
----------------
+Hierachical Tree
+----------------
 
 ::
 
