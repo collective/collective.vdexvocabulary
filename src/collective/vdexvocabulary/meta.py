@@ -55,8 +55,8 @@ def base_directive(_context, cls, filename=None, directory=None,
                 filename = os.path.join(base_dir, filename)
             else:
                 directory = os.path.join(base_dir, directory)
-    if file:
-        registerfile(_context, file, cls)
+    if filename:
+        registerfile(_context, filename, cls)
     else:
         for filename in os.listdir(directory):
             if filename.endswith('.vdex'):
