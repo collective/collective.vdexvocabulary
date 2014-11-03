@@ -19,7 +19,7 @@ setup(
     keywords='plone vdex zope vocabulary',
     author='Rok Garbas',
     author_email='rok@garbas.si',
-    url='http://github.com/garbas/collective.vdexvocabulary',
+    url='http://github.com/collective/collective.vdexvocabulary',
     license='GPL',
     packages=find_packages('src', exclude=['ez_setup']),
     package_dir={'': 'src'},
