@@ -320,9 +320,8 @@ example of a tree vocabulary::
 Where can I complain / help / send rum?
 =======================================
 
-:Source: git://github.com/garbas/collective.vdexvocabulary.git
-:Report Issues: http://github.com/collective/collective.vdexvocabulary/issues
-:Home page: http://github.com/collective/collective.vdexvocabulary
+:Home + Source: https://github.com/collective/collective.vdexvocabulary
+:Report Issues: https://github.com/collective/collective.vdexvocabulary/issues
 :Send rum: contact rok@garbas.si for more info
 
 
