@@ -364,6 +364,10 @@ History
 0.2dev
 ------
 
+* Plone 4.3 compatibility
+* lxml compatibility (imsvdex dropped elementtree in favour of lxml)
+  [ale-rt]
+
 * A bunch of refactoring in order to add a new vocab type: TreeVocabulary.
   As the name suggests, treevocabulary supports
   ``zope.schema.interfaces.ITreeVocabulary``. It has better i18n-support using

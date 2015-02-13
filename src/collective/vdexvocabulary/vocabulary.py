@@ -1,8 +1,6 @@
 from collective.vdexvocabulary.term import VdexTerm
 from zope.schema.vocabulary import getVocabularyRegistry
 from zope.schema.vocabulary import SimpleVocabulary
-from zope.schema.vocabulary import VocabularyRegistryError
-
 import imsvdex.vdex
 import logging
 import os.path
@@ -35,7 +33,13 @@ class VdexVocabulary(object):
 
     def getTerms(self, lang):
         xpath = self.vdex.vdexTag('term')
-        terms = self.vdex.tree._root.findall(xpath)
+        try:
+            terms = self.vdex.tree._root.findall(xpath)
+        except AttributeError:
+            # this happens with the new imsvdex, probably because
+            # it is using lxml.etree instead of elementtree
+            terms = self.vdex.tree.findall(xpath)
+
         out = []
         if len(terms) == 0:
             return []
@@ -50,7 +54,12 @@ class VdexVocabulary(object):
         registry = getVocabularyRegistry()
         items = [i['key'] for i in items]
         xpath = self.vdex.vdexTag('relationship')
-        rels = self.vdex.tree._root.findall(xpath)
+        try:
+            rels = self.vdex.tree._root.findall(xpath)
+        except AttributeError:
+            # this happens with the new imsvdex, probably because
+            # it is using lxml.etree instead of elementtree
+            rels = self.vdex.tree.findall(xpath)
 
         out = {}
         if len(rels) == 0:
@@ -81,7 +90,7 @@ class VdexVocabulary(object):
                         'sourceTerm (' + sourceTerm +
                         ') not listed in vocabulary (' +
                         sourceTermVocabName + ').'
-                )
+                    )
                 else:
                     if sourceTermVocab.getTermByToken(sourceTerm) is None:
                         logger.warn(
@@ -113,7 +122,7 @@ class VdexVocabulary(object):
                         'targetTerm (' + targetTerm +
                         ') not listed in vocabulary (' +
                         targetTermVocabName + ').'
-                )
+                    )
                 else:
                     if targetTermVocab.getTermByToken(targetTerm) is None:
                         logger.warn(
@@ -156,7 +165,11 @@ class VdexVocabulary(object):
             # TODO: need to depend only on zope
             # so use conditional imports in head area of this file
             from Products.CMFCore.utils import getToolByName
-            from zope.app.component.hooks import getSite
+            try:
+                from zope.component.hooks import getSite
+            except ImportError:
+                # Support obsolete installations
+                from zope.app.component.hooks import getSite
             lang_tool = getToolByName(getSite(), 'portal_languages')
             lang = lang_tool.getPreferredLanguage()
             logger.debug('Got preferred language "%s"' % lang)
