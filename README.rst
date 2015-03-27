@@ -366,6 +366,7 @@ History
 
 * Plone 4.3 compatibility
 * lxml compatibility (imsvdex dropped elementtree in favour of lxml)
+* entry point for z3c.autoinclude
   [ale-rt]
 
 * A bunch of refactoring in order to add a new vocab type: TreeVocabulary.
