@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.3 (unreleased)
-----------------
+0.2.1 (2015-06-22)
+------------------
 
 - Plone 4.3 compatibility
   [ale-rt]
