@@ -6,7 +6,10 @@ setup(
     name='collective.vdexvocabulary',
     version=version,
     description="IMS VDEX Vocabularies as Zope Vocabulary",
-    long_description=open("README.rst").read(),
+    long_description='%s\n%s' % (
+        open("README.rst").read(),
+        open("CHANGES.rst").read()
+    ),
     # Get more strings from
     # https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
