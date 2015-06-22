@@ -4,12 +4,6 @@ Changelog
 0.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
-
-0.2 (2014-11-03)
-----------------
-
 - Plone 4.3 compatibility
   [ale-rt]
 
@@ -18,6 +12,10 @@ Changelog
 
 - entry point for z3c.autoinclude
   [ale-rt]
+
+
+0.2 (2014-11-03)
+----------------
 
 - A bunch of refactoring in order to add a new vocab type: TreeVocabulary.
   As the name suggests, treevocabulary supports
