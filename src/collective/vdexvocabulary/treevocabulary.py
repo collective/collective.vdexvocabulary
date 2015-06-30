@@ -85,7 +85,7 @@ class VdexTreeVocabulary(TreeVocabulary):
         message_factory = MessageFactory(translationdomain.domain)
 
         # build TreeVocabulary with children
-        rootelement = self.vdex.tree._root
+        rootelement = self.vdex.tree.getroot()
         self._createTermTree(rootelement, self._terms, message_factory)
         self._populateIndexes(self._terms)
 
