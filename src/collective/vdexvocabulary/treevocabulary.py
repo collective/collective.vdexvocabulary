@@ -1,3 +1,4 @@
+from Products.CMFPlone.utils import safe_unicode
 from collective.vdexvocabulary.term import VdexTerm
 from zope.component import getUtility
 from zope.component import provideUtility
@@ -108,11 +109,11 @@ class VdexTreeVocabulary(TreeVocabulary):
                 identifier,  # value
                 identifier,  # token
                 # i18n message id for title/caption
-                _('caption|%s' % identifier,
-                  default=default_title or identifier.decode('utf-8')),
+                _(u'caption|%s' % identifier,
+                  default=default_title or safe_unicode(identifier)),
                 # i18n message id for description
-                _('description|%s' % identifier,
-                  default=default_description or identifier.decode('utf-8')),
+                _(u'description|%s' % identifier,
+                  default=default_description or safe_unicode(identifier)),
                 # todo: add related
                 []
             )
