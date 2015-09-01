@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.3 (unreleased)
-----------------
+0.2.2 (2015-09-01)
+------------------
 
 - Newer lxml doesn't allow accessing ``_root`` anymore.
   This switches to ``getroot()``.
