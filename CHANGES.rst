@@ -4,7 +4,9 @@ Changelog
 0.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Newer lxml doesn't allow accessing ``_root`` anymore.
+  This switches to ``getroot()``.
+  [pilz]
 
 
 0.2.1 (2015-06-22)
