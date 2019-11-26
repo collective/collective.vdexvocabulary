@@ -4,6 +4,9 @@ Changelog
 0.3 (unreleased)
 ----------------
 
+- Remove ``bootstrap.py``. Buildout is installed via pip nowadays.
+  [thet]
+
 - Add ``default_language`` option when registering vocabularies.
   Default language is used when the site language is not available
   in a vdex file. Not specifying this still means a default of 'en'.
