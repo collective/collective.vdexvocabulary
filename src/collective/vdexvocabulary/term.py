@@ -1,4 +1,3 @@
-
 from zope.interface import implements
 from zope.interface import directlyProvides
 from zope.schema.interfaces import ITokenizedTerm
@@ -11,13 +10,12 @@ class VdexTerm(object):
 
     implements(ITokenizedTerm)
 
-    def __init__(self, value, token=None, title=None, description=None,
-                 related=[]):
+    def __init__(self, value, token=None, title=None, description=None, related=[]):
         self.value = value
         if token is None:
             token = value
         if isinstance(token, unicode):
-            self.token = token.encode('utf-8')
+            self.token = token.encode("utf-8")
         else:
             self.token = str(token)
 
