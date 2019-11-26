@@ -81,12 +81,8 @@ def base_directive(
 
 
 def VdexVocabularyDirective(
-    _context,
-    file=None,
-    directory=None,  # nopep8
-    environment=None,
-    default_language=None,
-):  # nopep8
+    _context, file=None, directory=None, environment=None, default_language=None,
+):
     """ZCML directive to provide flat vdex vocabularies."""
     base_directive(
         _context,
@@ -99,12 +95,8 @@ def VdexVocabularyDirective(
 
 
 def VdexTreeVocabularyDirective(
-    _context,
-    file=None,
-    directory=None,  # nopep8
-    environment=None,
-    default_language=None,
-):  # nopep8
+    _context, file=None, directory=None, environment=None, default_language=None,
+):
     """ZCML directive to provide tree like vocabularies."""
     base_directive(
         _context,
