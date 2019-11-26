@@ -1,7 +1,7 @@
-from zope.interface import implements
 from zope.interface import directlyProvides
-from zope.schema.interfaces import ITokenizedTerm
+from zope.interface import implements
 from zope.schema.interfaces import ITitledTokenizedTerm
+from zope.schema.interfaces import ITokenizedTerm
 from zope.schema.vocabulary import getVocabularyRegistry
 
 

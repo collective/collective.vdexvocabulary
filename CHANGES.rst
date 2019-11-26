@@ -4,6 +4,9 @@ Changelog
 0.3 (unreleased)
 ----------------
 
+- Reformat the codebase using black and isort to meet current coding guidelines.
+  [thet]
+
 - Remove ``bootstrap.py``. Buildout is installed via pip nowadays.
   [thet]
 

@@ -7,6 +7,7 @@ import os
 import pprint
 import unittest
 
+
 optionflags = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
 
 

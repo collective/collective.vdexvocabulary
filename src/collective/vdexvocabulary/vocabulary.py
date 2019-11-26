@@ -1,9 +1,11 @@
 from collective.vdexvocabulary.term import VdexTerm
 from zope.schema.vocabulary import getVocabularyRegistry
 from zope.schema.vocabulary import SimpleVocabulary
+
 import imsvdex.vdex
 import logging
 import os.path
+
 
 logger = logging.getLogger("collective.vdexvocabulary")
 

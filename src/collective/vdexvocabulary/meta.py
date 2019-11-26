@@ -1,13 +1,14 @@
 from collective.vdexvocabulary import MessageFactory as _
-from collective.vdexvocabulary.vocabulary import VdexVocabulary
 from collective.vdexvocabulary.treevocabulary import VdexTreeVocabularyFactory
+from collective.vdexvocabulary.vocabulary import VdexVocabulary
 
 import logging
 import os
-import zope.interface
 import zope.component.zcml
 import zope.configuration
+import zope.interface
 import zope.schema
+
 
 logger = logging.getLogger("collective.vdexvocabulary")
 
