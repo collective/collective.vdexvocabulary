@@ -4,6 +4,8 @@ from zope.schema.interfaces import ITitledTokenizedTerm
 from zope.schema.interfaces import ITokenizedTerm
 from zope.schema.vocabulary import getVocabularyRegistry
 
+import six
+
 
 class VdexTerm(object):
     """Vdex tokenized term used by VdexVocabulary."""
@@ -14,7 +16,7 @@ class VdexTerm(object):
         self.value = value
         if token is None:
             token = value
-        if isinstance(token, unicode):
+        if isinstance(token, six.text_type):
             self.token = token.encode("utf-8")
         else:
             self.token = str(token)

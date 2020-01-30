@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-
-from interlude import interact
-
 import doctest
 import os
 import pprint
@@ -25,7 +22,6 @@ def test_suite():
                 filename,
                 optionflags=optionflags,
                 globs={
-                    "interact": interact,
                     "pprint": pprint.pprint,
                     "VDEXDIR": os.path.join(os.path.dirname(__file__), "vdex"),
                 },

@@ -9,6 +9,7 @@ from zope.schema.vocabulary import TreeVocabulary
 
 import imsvdex.vdex
 import os
+import six
 
 
 @implementer(ITranslationDomain)
@@ -29,7 +30,7 @@ class VdexTranslationDomain(object):
 
         # handle default
         if default is None:
-            default = unicode(msgid)
+            default = six.text_type(msgid)
 
         # get vdex term for msgid
         vdexterm = self.vdex.getTermById(msgid)
@@ -51,13 +52,13 @@ class VdexTranslationDomain(object):
 
         # find out what the target language should be
         if target_language is None and context is not None:
-            langs = translations.keys()
+            langs = list(translations.keys())
             negotiator = getUtility(INegotiator)
             target_language = negotiator.getLanguage(langs, context)
 
         # fetch matching translation or default
         message = translations.get(target_language, default)
-        if not isinstance(message, unicode):
+        if not isinstance(message, six.text_type):
             return message.decode("utf-8")
         return message
 
