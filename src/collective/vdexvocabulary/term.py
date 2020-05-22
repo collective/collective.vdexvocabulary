@@ -1,16 +1,14 @@
 from zope.interface import directlyProvides
-from zope.interface import implements
+from zope.interface import implementer
 from zope.schema.interfaces import ITitledTokenizedTerm
 from zope.schema.interfaces import ITokenizedTerm
 from zope.schema.vocabulary import getVocabularyRegistry
 
 import six
 
-
+@implementer(ITokenizedTerm)
 class VdexTerm(object):
     """Vdex tokenized term used by VdexVocabulary."""
-
-    implements(ITokenizedTerm)
 
     def __init__(self, value, token=None, title=None, description=None, related=[]):
         self.value = value
