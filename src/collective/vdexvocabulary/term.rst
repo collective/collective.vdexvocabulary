@@ -15,10 +15,21 @@ We use some german umlauts here, but repr is needed in a doctest :/
     >>> isinstance(term.value, str)
     True
 
-    >>> not isinstance(term.token, str)
+    >>> isinstance(term.token, str)
     True
 
     >>> term.title is None
+    True
+
+Passing bytes as a token should work, too.
+
+::
+
+    >>> term = VdexTerm('füü', token='füü'.encode("utf-8"))
+    >>> term
+    <VdexTerm 'füü' at 0x...>
+
+    >>> isinstance(term.token, str)
     True
 
 Now with numbers:::

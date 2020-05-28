@@ -14,8 +14,8 @@ class VdexTerm(object):
         self.value = value
         if token is None:
             token = value
-        if isinstance(token, six.text_type):
-            self.token = token.encode("utf-8")
+        if six.PY3 and isinstance(token, bytes):
+            self.token = token.decode("utf-8")
         else:
             self.token = str(token)
 
@@ -28,7 +28,7 @@ class VdexTerm(object):
     def __repr__(self):
         rep = "<%s '%s' at %s>" % (
             self.__class__.__name__,
-            self.token.decode("utf-8"),
+            self.token,
             hex(id(self))[:-1],
         )
         return rep
