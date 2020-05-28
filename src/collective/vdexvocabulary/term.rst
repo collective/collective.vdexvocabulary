@@ -8,14 +8,14 @@ We use some german umlauts here, but repr is needed in a doctest :/
 
 ::
 
-    >>> term = VdexTerm(u'f\xfc\xfc')
+    >>> term = VdexTerm('füü')
     >>> term
     <VdexTerm 'füü' at 0x...>
 
-    >>> isinstance(term.value, unicode)
+    >>> isinstance(term.value, str)
     True
 
-    >>> not isinstance(term.token, unicode)
+    >>> not isinstance(term.token, str)
     True
 
     >>> term.title is None

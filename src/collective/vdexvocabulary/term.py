@@ -28,7 +28,7 @@ class VdexTerm(object):
     def __repr__(self):
         rep = "<%s '%s' at %s>" % (
             self.__class__.__name__,
-            self.token,
+            self.token.decode("utf-8"),
             hex(id(self))[:-1],
         )
         return rep

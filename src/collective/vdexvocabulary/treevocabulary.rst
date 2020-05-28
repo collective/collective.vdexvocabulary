@@ -54,13 +54,13 @@ check translations::
 
     >>> from zope.i18n import translate
     >>> translate(vdex_vocab.term_by_value['nwe'].title)
-    u'North-west of Europe'
+    'North-west of Europe'
 
     >>> translate(vdex_vocab.term_by_value['nwe'].title, target_language='en')
-    u'North-west of Europe'
+    'North-west of Europe'
 
     >>> translate(vdex_vocab.term_by_value['nwe'].title, target_language='de')
-    u'Nordwesteuropa'
+    'Nordwesteuropa'
 
 check with negiotation
 
@@ -79,4 +79,4 @@ run with mock::
 
 
     >>> translate(vdex_vocab.term_by_value['nwe'].title, context={})
-    u'Nordwesteuropa'
+    'Nordwesteuropa'

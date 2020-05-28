@@ -1,4 +1,5 @@
 from collective.vdexvocabulary.term import VdexTerm
+from Products.CMFPlone.utils import safe_text
 from zope.component import getUtility
 from zope.component import provideUtility
 from zope.i18n.interfaces import INegotiator
@@ -22,7 +23,15 @@ class VdexTranslationDomain(object):
         return "collective.vdexvocabulary.%s" % self.vdex.getVocabIdentifier()
 
     def translate(
-        self, msgid, mapping=None, context=None, target_language=None, default=None
+        self,
+        msgid,
+        mapping=None,
+        context=None,
+        target_language=None,
+        default=None,
+        msgid_plural=None,
+        default_plural=None,
+        number=None,
     ):
         # msgid is always kind|termidentifer
         # i.e.: caption|prod.1 or description|prod.45
@@ -107,12 +116,12 @@ class VdexTreeVocabulary(TreeVocabulary):
                 # i18n message id for title/caption
                 _(
                     "caption|%s" % identifier,
-                    default=default_title or identifier.decode("utf-8"),
+                    default=default_title or identifier,
                 ),
                 # i18n message id for description
                 _(
                     "description|%s" % identifier,
-                    default=default_description or identifier.decode("utf-8"),
+                    default=default_description or identifier,
                 ),
                 # todo: add related
                 [],
