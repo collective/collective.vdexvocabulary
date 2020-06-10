@@ -1,10 +1,19 @@
+# coding=utf-8
 from zope.interface import directlyProvides
 from zope.interface import implementer
 from zope.schema.interfaces import ITitledTokenizedTerm
 from zope.schema.interfaces import ITokenizedTerm
 from zope.schema.vocabulary import getVocabularyRegistry
-
 import six
+
+try:
+    from Products.CMFPlone.utils import safe_nativestring
+except ImportError:
+    if six.PY2:
+        from Products.CMFPlone.utils import safe_encode as safe_nativestring
+    else:
+        from Products.CMFPlone.utils import safe_unicode as safe_nativestring
+
 
 @implementer(ITokenizedTerm)
 class VdexTerm(object):
@@ -14,11 +23,11 @@ class VdexTerm(object):
         self.value = value
         if token is None:
             token = value
-        if six.PY3 and isinstance(token, bytes):
-            self.token = token.decode("utf-8")
-        else:
-            self.token = str(token)
-
+        token = safe_nativestring(token)
+        if not isinstance(token, str):
+            # Some non text like object
+            token = str(token)
+        self.token = token
         self.title = title
         if title is not None:
             directlyProvides(self, ITitledTokenizedTerm)

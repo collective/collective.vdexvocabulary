@@ -1,5 +1,4 @@
 from collective.vdexvocabulary.term import VdexTerm
-from Products.CMFPlone.utils import safe_text
 from zope.component import getUtility
 from zope.component import provideUtility
 from zope.i18n.interfaces import INegotiator
@@ -11,6 +10,12 @@ from zope.schema.vocabulary import TreeVocabulary
 import imsvdex.vdex
 import os
 import six
+
+try:
+    from Products.CMFPlone.utils import safe_text
+except ImportError:
+    # Plone 5.1
+    from Products.CMFPlone.utils import safe_unicode as safe_text
 
 
 @implementer(ITranslationDomain)
@@ -61,14 +66,12 @@ class VdexTranslationDomain(object):
 
         # find out what the target language should be
         if target_language is None and context is not None:
-            langs = list(translations.keys())
+            langs = list(translations)
             negotiator = getUtility(INegotiator)
             target_language = negotiator.getLanguage(langs, context)
 
         # fetch matching translation or default
-        message = translations.get(target_language, default)
-        if not isinstance(message, six.text_type):
-            return message.decode("utf-8")
+        message = safe_text(translations.get(target_language, default))
         return message
 
 
@@ -116,12 +119,12 @@ class VdexTreeVocabulary(TreeVocabulary):
                 # i18n message id for title/caption
                 _(
                     "caption|%s" % identifier,
-                    default=default_title or identifier,
+                    default=default_title or safe_text(identifier),
                 ),
                 # i18n message id for description
                 _(
                     "description|%s" % identifier,
-                    default=default_description or identifier,
+                    default=default_description or safe_text(identifier),
                 ),
                 # todo: add related
                 [],

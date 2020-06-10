@@ -160,7 +160,7 @@ class VdexVocabulary(object):
                     + ")"
                 )
 
-            if sourceTerm not in list(out.keys()):
+            if sourceTerm not in out:
                 out[sourceTerm] = {}
             if relationshipType not in [i for i in out[sourceTerm]]:
                 out[sourceTerm][relationshipType] = []
