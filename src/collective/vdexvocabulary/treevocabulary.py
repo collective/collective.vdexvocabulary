@@ -44,7 +44,7 @@ class VdexTranslationDomain(object):
 
         # handle default
         if default is None:
-            default = six.text_type(msgid)
+            default = safe_text(msgid)
 
         # get vdex term for msgid
         vdexterm = self.vdex.getTermById(msgid)
