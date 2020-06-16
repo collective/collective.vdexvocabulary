@@ -34,6 +34,7 @@ setup(
     install_requires=[
         "setuptools",
         "imsvdex",
+        "six",
         "zope.schema",
         "zope.interface",
         "zope.component",
