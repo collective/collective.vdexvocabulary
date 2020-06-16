@@ -4,15 +4,33 @@ from zope.interface import implementer
 from zope.schema.interfaces import ITitledTokenizedTerm
 from zope.schema.interfaces import ITokenizedTerm
 from zope.schema.vocabulary import getVocabularyRegistry
+
 import six
 
+
 try:
-    from Products.CMFPlone.utils import safe_nativestring
+    from six import ensure_str
 except ImportError:
-    if six.PY2:
-        from Products.CMFPlone.utils import safe_encode as safe_nativestring
-    else:
-        from Products.CMFPlone.utils import safe_unicode as safe_nativestring
+
+    def ensure_str(s, encoding="utf-8", errors="strict"):
+        """Coerce *s* to `str`.
+        For Python 2:
+        - `unicode` -> encoded to `str`
+        - `str` -> `str`
+        For Python 3:
+        - `str` -> `str`
+        - `bytes` -> decoded to `str`
+        """
+        # Optimization: Fast return for the common case.
+        if type(s) is str:
+            return s
+        if six.PY2 and isinstance(s, six.text_type):
+            return s.encode(encoding, errors)
+        elif six.PY3 and isinstance(s, six.binary_type):
+            return s.decode(encoding, errors)
+        elif not isinstance(s, (six.text_type, six.binary_type)):
+            raise TypeError("not expecting type '%s'" % type(s))
+        return s
 
 
 @implementer(ITokenizedTerm)
@@ -23,8 +41,9 @@ class VdexTerm(object):
         self.value = value
         if token is None:
             token = value
-        token = safe_nativestring(token)
-        if not isinstance(token, str):
+        try:
+            token = ensure_str(token)
+        except TypeError:
             # Some non text like object
             token = str(token)
         self.token = token

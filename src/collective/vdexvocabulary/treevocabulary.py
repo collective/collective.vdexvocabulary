@@ -11,11 +11,25 @@ import imsvdex.vdex
 import os
 import six
 
+
 try:
-    from Products.CMFPlone.utils import safe_text
+    from six import ensure_text
 except ImportError:
-    # Plone 5.1
-    from Products.CMFPlone.utils import safe_unicode as safe_text
+    def ensure_text(s, encoding='utf-8', errors='strict'):
+        """Coerce *s* to six.text_type.
+        For Python 2:
+        - `unicode` -> `unicode`
+        - `str` -> `unicode`
+        For Python 3:
+        - `str` -> `str`
+        - `bytes` -> decoded to `str`
+        """
+        if isinstance(s, six.binary_type):
+            return s.decode(encoding, errors)
+        elif isinstance(s, six.text_type):
+            return s
+        else:
+            raise TypeError("not expecting type '%s'" % type(s))
 
 
 @implementer(ITranslationDomain)
@@ -44,7 +58,7 @@ class VdexTranslationDomain(object):
 
         # handle default
         if default is None:
-            default = safe_text(msgid)
+            default = ensure_text(msgid)
 
         # get vdex term for msgid
         vdexterm = self.vdex.getTermById(msgid)
@@ -71,7 +85,7 @@ class VdexTranslationDomain(object):
             target_language = negotiator.getLanguage(langs, context)
 
         # fetch matching translation or default
-        message = safe_text(translations.get(target_language, default))
+        message = ensure_text(translations.get(target_language, default))
         return message
 
 
@@ -119,12 +133,12 @@ class VdexTreeVocabulary(TreeVocabulary):
                 # i18n message id for title/caption
                 _(
                     "caption|%s" % identifier,
-                    default=default_title or safe_text(identifier),
+                    default=default_title or ensure_text(identifier),
                 ),
                 # i18n message id for description
                 _(
                     "description|%s" % identifier,
-                    default=default_description or safe_text(identifier),
+                    default=default_description or ensure_text(identifier),
                 ),
                 # todo: add related
                 [],
