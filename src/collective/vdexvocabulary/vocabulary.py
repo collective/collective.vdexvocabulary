@@ -23,8 +23,8 @@ class VdexVocabulary(object):
                 self.vdex = imsvdex.vdex.VDEXManager(
                     file=f, lang=default_lang, fallback=fallback_to_default_language
                 )
-            except imsvdex.vdex.VDEXError, e:
-                raise imsvdex.vdex.VDEXError, vdex_filename + ": " + str(e)
+            except imsvdex.vdex.VDEXError as e:
+                raise imsvdex.vdex.VDEXError(vdex_filename + ": " + str(e))
 
         self.cache = {}
 
@@ -160,7 +160,7 @@ class VdexVocabulary(object):
                     + ")"
                 )
 
-            if sourceTerm not in out.keys():
+            if sourceTerm not in out:
                 out[sourceTerm] = {}
             if relationshipType not in [i for i in out[sourceTerm]]:
                 out[sourceTerm][relationshipType] = []

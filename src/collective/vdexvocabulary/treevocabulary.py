@@ -9,6 +9,27 @@ from zope.schema.vocabulary import TreeVocabulary
 
 import imsvdex.vdex
 import os
+import six
+
+
+try:
+    from six import ensure_text
+except ImportError:
+    def ensure_text(s, encoding='utf-8', errors='strict'):
+        """Coerce *s* to six.text_type.
+        For Python 2:
+        - `unicode` -> `unicode`
+        - `str` -> `unicode`
+        For Python 3:
+        - `str` -> `str`
+        - `bytes` -> decoded to `str`
+        """
+        if isinstance(s, six.binary_type):
+            return s.decode(encoding, errors)
+        elif isinstance(s, six.text_type):
+            return s
+        else:
+            raise TypeError("not expecting type '%s'" % type(s))
 
 
 @implementer(ITranslationDomain)
@@ -21,7 +42,15 @@ class VdexTranslationDomain(object):
         return "collective.vdexvocabulary.%s" % self.vdex.getVocabIdentifier()
 
     def translate(
-        self, msgid, mapping=None, context=None, target_language=None, default=None
+        self,
+        msgid,
+        mapping=None,
+        context=None,
+        target_language=None,
+        default=None,
+        msgid_plural=None,
+        default_plural=None,
+        number=None,
     ):
         # msgid is always kind|termidentifer
         # i.e.: caption|prod.1 or description|prod.45
@@ -29,7 +58,7 @@ class VdexTranslationDomain(object):
 
         # handle default
         if default is None:
-            default = unicode(msgid)
+            default = ensure_text(msgid)
 
         # get vdex term for msgid
         vdexterm = self.vdex.getTermById(msgid)
@@ -51,14 +80,12 @@ class VdexTranslationDomain(object):
 
         # find out what the target language should be
         if target_language is None and context is not None:
-            langs = translations.keys()
+            langs = list(translations)
             negotiator = getUtility(INegotiator)
             target_language = negotiator.getLanguage(langs, context)
 
         # fetch matching translation or default
-        message = translations.get(target_language, default)
-        if not isinstance(message, unicode):
-            return message.decode("utf-8")
+        message = ensure_text(translations.get(target_language, default))
         return message
 
 
@@ -106,12 +133,12 @@ class VdexTreeVocabulary(TreeVocabulary):
                 # i18n message id for title/caption
                 _(
                     "caption|%s" % identifier,
-                    default=default_title or identifier.decode("utf-8"),
+                    default=default_title or ensure_text(identifier),
                 ),
                 # i18n message id for description
                 _(
                     "description|%s" % identifier,
-                    default=default_description or identifier.decode("utf-8"),
+                    default=default_description or ensure_text(identifier),
                 ),
                 # todo: add related
                 [],

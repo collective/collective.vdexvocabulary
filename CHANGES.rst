@@ -4,6 +4,9 @@ Changelog
 0.3 (unreleased)
 ----------------
 
+- Support for Python 3.
+  [thet]
+
 - Reformat the codebase using black and isort to meet current coding guidelines.
   [thet]
 

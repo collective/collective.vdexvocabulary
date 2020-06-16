@@ -13,9 +13,12 @@ setup(
     # https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
         "Framework :: Zope2",
-        "Framework :: Zope2",
         "Framework :: Plone",
         "Programming Language :: Python",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     keywords="plone vdex zope vocabulary",
@@ -23,7 +26,7 @@ setup(
     author_email="rok@garbas.si",
     url="http://github.com/collective/collective.vdexvocabulary",
     license="GPL",
-    packages=find_packages("src", exclude=["ez_setup"]),
+    packages=find_packages("src"),
     package_dir={"": "src"},
     namespace_packages=["collective"],
     include_package_data=True,
@@ -31,6 +34,7 @@ setup(
     install_requires=[
         "setuptools",
         "imsvdex",
+        "six",
         "zope.schema",
         "zope.interface",
         "zope.component",
@@ -39,7 +43,7 @@ setup(
         "zope.i18nmessageid",
     ],
     test_suite="tests.test_suite",
-    extras_require={"test": ["ipdb", "interlude",]},
+    extras_require={"test": []},
     entry_points="""
         # -*- Entry points: -*-
 

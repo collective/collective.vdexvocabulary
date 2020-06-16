@@ -3,6 +3,7 @@
 Import Term and initalize::
 
     >>> from collective.vdexvocabulary.term import VdexTerm
+    >>> import six
 
 We use some german umlauts here, but repr is needed in a doctest :/
 
@@ -12,13 +13,24 @@ We use some german umlauts here, but repr is needed in a doctest :/
     >>> term
     <VdexTerm 'füü' at 0x...>
 
-    >>> isinstance(term.value, unicode)
+    >>> isinstance(term.value, six.text_type)
     True
 
-    >>> not isinstance(term.token, unicode)
+    >>> isinstance(term.token, str)
     True
 
     >>> term.title is None
+    True
+
+Passing bytes as a token should work, too.
+
+::
+
+    >>> term = VdexTerm(u'f\xfc\xfc', token=b'b\xc3\xbc\xc3\xbc')
+    >>> term
+    <VdexTerm 'büü' at 0x...>
+
+    >>> isinstance(term.token, str)
     True
 
 Now with numbers:::
@@ -44,4 +56,3 @@ Now with numbers:::
 
     >>> term2.description
     'bar'
-
