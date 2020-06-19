@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.3 (unreleased)
+0.3 (2020-06-19)
 ----------------
 
 - Support for Python 3.
